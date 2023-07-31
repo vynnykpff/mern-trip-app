@@ -1,8 +1,8 @@
-# **MERN Linker Flow**
+# **MERN Trip App**
 
 ## [**<u>Link to website</u>**](https://youtu.be/tCn5hzxJi2o)
 
-#### This is a GitHub project that develops a set of microservices for uploading files and sharing links to those files. The goal is to create an efficient and scalable system that will simplify data management and ensure secure information transfer. The project will use advanced technologies and consider cloud storage to improve functionality. We invite everyone to join and contribute to the development of this innovative system. This is a GitHub project that develops a set of microservices for uploading files and sharing links to those files. The goal is to create an efficient and scalable system that will simplify data management and ensure secure information transfer. The project will use advanced technologies and consider cloud storage to improve functionality.
+#### This app is created according to the [technical task](https://drive.google.com/drive/folders/141SeL3mCM-vYxJEjcyJVYdGnoWDqGzIW?usp=sharing). The main idea is to create an application that helps in creating travel and weather information.
 
 ---
 
@@ -51,7 +51,7 @@
 5. Installing all dependencies from Frontend;
 
 ```sh
- 1. git clone https://github.com/aegisgroup/linkerflow.git
+ 1. git clone https://github.com/vynnykpff/mern-trip-app.git
  2. cd linkerflow
  3. npm install
  4. cd client
@@ -99,9 +99,5 @@ To run a production `build`, run the command:
 ```sh
 yarn build
 ```
-
-## **Why did you develop this project?**
-
-#### We decided to improve our technical skills and work as a team. We were invited to a charity project, for which we were given a technical task. From that moment, the development of pet-project started
 
 <hr>
