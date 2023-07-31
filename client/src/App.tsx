@@ -1,10 +1,21 @@
-function App() {
+import {Route, Routes} from 'react-router-dom';
+import {lazy} from 'react';
+import {Layout} from "./components";
+import {all, home, profile} from "./core";
 
-  return (
-    <>
-      <h2>Trip App</h2>
-    </>
-  )
-}
+const HomePage = lazy(() => import('./pages/HomePage/HomePage.tsx'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage/ProfilePage.tsx'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage.tsx'));
 
-export default App
+export const App = () => {
+
+	return (
+		<Routes>
+			<Route path={home} element={<Layout/>}>
+				<Route path={home} element={<HomePage/>}/>
+				<Route path={profile} element={<ProfilePage/>}/>
+				<Route path={all} element={<NotFoundPage/>}/>
+			</Route>
+		</Routes>
+	);
+};
