@@ -11,7 +11,6 @@ export class CityService {
 	}
 
 	static getCurrentCityImage(city: string) {
-		console.log(city);
 		return cityApi.get(`/urban_areas/slug:${city}images`).then(res => res.data.photos[0].image.mobile);
 	}
 }

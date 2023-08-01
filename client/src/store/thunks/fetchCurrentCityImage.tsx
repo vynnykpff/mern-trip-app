@@ -4,7 +4,7 @@ import {CityService} from "../../services/cityService.tsx";
 import {setCityImage} from "../slices/currentCitySlice.ts";
 
 export const fetchCurrentCityImage = createAsyncThunk(
-	'city/fetchCurrentCityImage',
+	'current_city/fetchCurrentCityImage',
 	async function (_, {rejectWithValue, getState, dispatch}) {
 		try {
 			const cityName = getState().currentCitySliceReducer.citySlug;

@@ -4,7 +4,7 @@ import {CityService} from "../../services/cityService.tsx";
 import {setCitySlug} from "../slices/currentCitySlice.ts";
 
 export const fetchCurrentCityGeoName = createAsyncThunk(
-	'city/fetchCurrentCityGeoName',
+	'current_city/fetchCurrentCityGeoName',
 	async function (_, {rejectWithValue, getState, dispatch}) {
 		try {
 			const dataCityGeo = getState().currentCitySliceReducer.cityGeoLink;

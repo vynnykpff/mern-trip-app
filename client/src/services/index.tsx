@@ -5,5 +5,5 @@ export const cityApi = axios.create({
 });
 
 export const weatherApi = axios.create({
-	baseURL: ""
+	baseURL: "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline"
 });
