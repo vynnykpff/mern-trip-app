@@ -5,9 +5,10 @@ import {AppDispatch, RootState} from "../../store/store.tsx";
 import {setTripData} from "../../store/slices/currentWeatherSlice.ts";
 import {fetchCurrentWeatherOnTrip} from "../../store/thunks/fetchCurrentWeatherOnTrip.tsx";
 import {fetchCurrentDailyWeather} from "../../store/thunks/fetchCurrentDailyWeather.tsx";
-import {Button, Search, Sidebar} from "../../components";
+import {Search, Sidebar, Trips, WeatherForecast} from "../../components";
 // Styles
 import styles from "./HomePage.module.css";
+import {Modal} from "../../components/ui/Modal/Modal.tsx";
 
 const HomePage = () => {
 	const {cityImage, citySlug} = useSelector((state: RootState) => state.currentCitySliceReducer);
@@ -27,7 +28,6 @@ const HomePage = () => {
 	// const [weather, setWeather] = useState(false);
 
 	// ============
-
 
 	const getCityImage = async () => {
 		if (!city.length) {
@@ -66,69 +66,28 @@ const HomePage = () => {
 			if (!city.length) {
 				return;
 			}
-
 			await dispatch((fetchCurrentDailyWeather()));
 		}
+
 		getData();
 	}, [trip]);
-
 
 	return (
 		<div className={styles.homeWrapper}>
 
 			<div className={styles.sectionWrapper}>
-			<section>
-				<h2>Weather <span>Forecast</span> </h2>
+				<h2 className={styles.title}>Weather <span className={styles.highlight}>Forecast</span></h2>
 
 				<Search/>
 
-				<div>
-					<div>
-						<img src="" alt=""/>
-						<p>Berlin</p>
-						<p>14.07.2023 - 18.07.-2023</p>
-					</div>
-					<div>
-						<img src="" alt=""/>
-						<p>Tokyo</p>
-						<p>24.07.2023 - 05.08.-2023</p>
-					</div>
-					<div>
-						<img src="" alt=""/>
-						<p>Barcelona</p>
-						<p>12.08.2023 - 21.08.-2023</p>
-					</div>
-					<Button/>
-				</div>
-			</section>
+				<Trips/>
 
-			<br/>
-
-			<section>
 				<h3>Week</h3>
-				<br/>
 
-				<div>
-					<p>Monday</p>
-					<img src="" alt="img"/>
-					<p>28</p>
-				</div>
-				<div>
-					<p>Tuesday</p>
-					<img src="" alt="img"/>
-					<p>21</p>
-				</div>
-				<div>
-					<p>Wednesday</p>
-					<img src="" alt="img"/>
-					<p>25</p>
-				</div>
-				<div>
-					<p>Thursday</p>
-					<img src="" alt="img"/>
-					<p>31</p>
-				</div>
-			</section>
+				<WeatherForecast/>
+
+				<Modal/>
+
 			</div>
 
 			<Sidebar/>

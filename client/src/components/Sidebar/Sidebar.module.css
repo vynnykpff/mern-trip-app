@@ -3,9 +3,10 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 400px;
+	width: 500px;
 	background: url('../../assets/images/clouds_bg.jpg') no-repeat;
 	background-size: cover;
 	padding: 30px;
-	height: 100vh;
+	min-height: 100vh;
+	position: relative;
 }
