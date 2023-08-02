@@ -1,0 +1,9 @@
+.homeWrapper {
+	display: flex;
+	justify-content: space-between;
+	background-color: #ccc;
+}
+
+.sectionWrapper {
+	padding: 30px
+}

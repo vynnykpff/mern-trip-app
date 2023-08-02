@@ -25,9 +25,6 @@
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [React Router Dom](https://reactrouter.com/en/main)
 - [Axios](https://axios-http.com/)
-- [React Icons](https://react-icons.github.io/react-icons)
-- [React-Toastify ](https://fkhadra.github.io/react-toastify/installation/)
-- [Emotion Styled Components](https://emotion.sh/docs/styled)
 - [normalize.css](https://necolas.github.io/normalize.css/)
 
 ### Backend part:

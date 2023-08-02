@@ -1,0 +1,17 @@
+.button {
+	margin-left: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 150px;
+	height: 150px;
+	outline: none;
+	border: none;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.button .buttonIcon {
+	width: 25px;
+}
