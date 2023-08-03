@@ -1,0 +1,44 @@
+.weatherContainer {
+	color: #fff;
+}
+
+.day {
+	font-size: 40px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.weatherBlock{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	column-gap: 15px;
+	padding: 25px 0;
+}
+
+.weatherImage {
+	position: absolute;
+	left: -55px;
+	width: 65px
+}
+
+.weatherTemp {
+	font-size: 65px;
+	font-weight: 500;
+	position: relative
+}
+
+.weatherDegree {
+	position: absolute;
+	top: 0;
+	right: -22px;
+	font-size: 22px;
+	font-weight: 400;
+}
+
+.weatherCity{
+	font-size: 35px;
+	text-align: center;
+	font-weight: 500;
+}

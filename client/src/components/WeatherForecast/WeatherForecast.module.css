@@ -1,0 +1,26 @@
+.weatherWrapper {
+	display: flex;
+	column-gap: 80px;
+	text-align: center;
+	margin-top: 60px;
+}
+
+.weatherCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.weatherDay {
+	color: #b7b6b6;
+}
+
+.weatherTemp {
+	font-weight: 500;
+}
+
+.weatherImage {
+	width: 60px;
+	height: 60px;
+	margin: 15px 0;
+}

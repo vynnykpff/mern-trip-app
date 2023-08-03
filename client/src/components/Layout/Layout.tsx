@@ -1,7 +1,7 @@
 import {Suspense, useEffect, useState} from "react";
 import {Outlet} from "react-router-dom";
-import {Container} from "../../styles/Common.styled.tsx";
 import {Loader} from "../ui/Loader/Loader.tsx";
+import styles from "../../styles/index.module.css"
 
 export const Layout = () => {
 	const [isLoad, setIsLoad] = useState<boolean>(false);
@@ -15,11 +15,11 @@ export const Layout = () => {
 	return (
 		<>
 			{isLoad ?
-				<Container>
+				<div className={styles.container}>
 					<Suspense fallback={<Loader/>}>
 						<Outlet/>
 					</Suspense>
-				</Container>
+				</div>
 				: <Loader/>
 			}
 		</>
