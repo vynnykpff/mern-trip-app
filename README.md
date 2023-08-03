@@ -1,4 +1,4 @@
-# **MERN Trip App**
+# **MERN Trip App Client**
 
 ## [**<u>Link to website</u>**](https://youtu.be/tCn5hzxJi2o)
 
@@ -27,32 +27,18 @@
 - [Axios](https://axios-http.com/)
 - [normalize.css](https://necolas.github.io/normalize.css/)
 
-### Backend part:
-
-- [Node.js](https://nodejs.org/en)
-- [MongoDB](https://www.mongodb.com/)
-- [mongoose](https://mongoosejs.com/)
-- [Express](https://expressjs.com/)
-- [express-validator](https://express-validator.github.io/docs/)
-- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
-- [bcrypt.js](https://www.npmjs.com/package/bcryptjs)
-
 ## **Using**
 
 **If you want to use this project for your own purposes, you should:**
 
 1. Clone the repository to your folder;
 2. Go to project;
-3. Installing all dependencies from Backend;
-4. Go to client folder;
-5. Installing all dependencies from Frontend;
+3. Installing all dependencies;
 
 ```sh
- 1. git clone https://github.com/vynnykpff/mern-trip-app.git
- 2. cd linkerflow
- 3. npm install
- 4. cd client
- 5. yarn
+ 1. git clone https://github.com/vynnykpff/mern-trip-app-client.git
+ 2. cd mern-trip-app-client
+ 3. yarn
 ```
 
 ### Requirements
@@ -65,28 +51,6 @@ To start the `client`, run the command:
 
 ```sh
 yarn dev
-```
-
-#### or
-
-```sh
-npm run client
-```
-
-### Starting the `Server`
-
-To start the `server`, run the command:
-
-```sh
-npm run server
-```
-
-### Starting the `App`
-
-To start the `app`, run the command:
-
-```sh
-npm run dev
 ```
 
 ### `Build` creation

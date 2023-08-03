@@ -1,0 +1,33 @@
+.tripsWrapper {
+	display: flex;
+	justify-content: space-between;
+	margin: 40px 0 100px 0;
+}
+
+.tripCard {
+	width: 200px;
+	height: 200px;
+}
+
+.tripDescription {
+	padding: 15px;
+}
+
+.tripTitle {
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+.tripDate {
+	color: #b7b6b6;
+	font-size: 14px;
+}
+
+.cityImage {
+	width: 100%;
+	height: 100%
+}
+
+.buttonIcon {
+	width: 25px;
+}
