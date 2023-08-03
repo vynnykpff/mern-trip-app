@@ -1,6 +1,6 @@
 import styles from './Modal.module.css';
 import cn from "classnames";
-import {Dispatch, FC, ReactNode, SetStateAction, useEffect} from "react";
+import {Dispatch, FC, HTMLAttributes, ReactNode, SetStateAction, useEffect} from "react";
 import {createPortal} from "react-dom";
 
 type ModalProps = {
@@ -9,9 +9,9 @@ type ModalProps = {
 	children: ReactNode;
 	title: string;
 	onHide?: () => void;
-}
+} & HTMLAttributes<HTMLDivElement>
 
-export const Modal: FC<ModalProps> = ({modalActive, setModalActive, children, title, onHide}) => {
+export const Modal: FC<ModalProps> = ({modalActive, setModalActive, children, title, onHide, className, ...props}) => {
 	const handleClick = () => {
 		setModalActive(false)
 	}
@@ -25,7 +25,7 @@ export const Modal: FC<ModalProps> = ({modalActive, setModalActive, children, ti
 	return createPortal(
 		<div onClick={handleClick}
 		     className={`${styles.modalOverlay}  ${modalActive ? cn(styles.modal, styles.active) : styles.modal}`}>
-			<div onClick={e => e.stopPropagation()} className={styles.modalWrapper}>
+			<div {...props} onClick={e => e.stopPropagation()} className={cn(styles.modalWrapper, className)}>
 				<div className={styles.modalHeader}>
 					<p className={styles.modalTitle}>{title}</p>
 					<div onClick={handleClick} className={styles.closeWrapper}>

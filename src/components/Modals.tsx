@@ -3,6 +3,7 @@ import {components} from "@/store/slices/uiSlice.ts";
 
 export const Modals = () => {
 	const uiState = useAppSelector(state => state.uiSliceReducer);
+
 	return (
 		<>
 			{Object.keys(uiState).map(i => {
@@ -10,7 +11,9 @@ export const Modals = () => {
 				if (!uiState[key]) {
 					return null;
 				}
+				
 				const Component = components[key];
+				
 				return (
 					<Component key={key}/>
 				)

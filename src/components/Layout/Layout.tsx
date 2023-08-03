@@ -1,25 +1,16 @@
-import {Suspense, useEffect, useState} from "react";
-import {Outlet} from "react-router-dom";
-import {Loader} from "../ui/Loader/Loader.tsx";
-import styles from "../../styles/index.module.css"
+import {FC, PropsWithChildren} from "react";
+import {Loader} from "@/components";
+import {useMounted} from "@/hooks/useMounted";
 
-export const Layout = () => {
-	const [isLoad, setIsLoad] = useState<boolean>(false);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setIsLoad(true);
-		}, 500)
-	}, [])
+export const Layout: FC<PropsWithChildren> = ({children}) => {
+	const mounted = useMounted();
 
 	return (
 		<>
-			{isLoad ?
-				<div className={styles.container}>
-					<Suspense fallback={<Loader/>}>
-						<Outlet/>
-					</Suspense>
-				</div>
+			{mounted ?
+				<>
+					{children}
+				</>
 				: <Loader/>
 			}
 		</>

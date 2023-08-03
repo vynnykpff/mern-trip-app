@@ -1,11 +1,12 @@
 export const ROUTES = {
 	home: '/',
-
 	profile: '/profile',
+	profileHome: 'home',
+	profileSettings: 'settings',
+	profileArchive: 'archive',
 	login: '/login',
 	register: '/register',
-
 	all: '*',
 };
 
-export const {home, profile, all} = ROUTES;
+export const {home, profile, profileHome, profileSettings, profileArchive, all} = ROUTES;

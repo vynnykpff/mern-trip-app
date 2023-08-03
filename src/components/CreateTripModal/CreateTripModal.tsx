@@ -5,7 +5,6 @@ import {useUiState} from "@/hooks/useUiState.ts";
 
 export const CreateTripModal = () => {
 	const [modalActive, setModalActive] = useUiState("createTripModal");
-
 	const {
 		handleSubmit,
 		register,
@@ -15,7 +14,7 @@ export const CreateTripModal = () => {
 		mode: "onBlur",
 	});
 
-	const onSubmit = (data:any) => {
+	const onSubmit = (data: any) => {
 		alert(JSON.stringify(data));
 	}
 
@@ -28,8 +27,9 @@ export const CreateTripModal = () => {
 	}
 
 	return (
-		<Modal setModalActive={setModalActive} modalActive={modalActive} onHide={onHide} title="Create trip">
-			<form onClick={e => e.stopPropagation()} onSubmit={handleSubmit(onSubmit)} className={styles.modalWrapper}>
+		<Modal className={styles.modalContainer} setModalActive={setModalActive} modalActive={modalActive} onHide={onHide}
+		       title="Create trip">
+			<form onClick={e => e.stopPropagation()} onSubmit={handleSubmit(onSubmit)}>
 				<div className={styles.modalFieldsWrapper}>
 					<label className={styles.modalLabel} htmlFor="city">City
 						<p className={styles.modalError}>{errors?.city &&
@@ -49,13 +49,13 @@ export const CreateTripModal = () => {
 					</label>
 					<input  {...register('to', {required: "Required field"})} className={styles.modalField} id="to" type="date"/>
 				</div>
-				<div className={styles.footerModal}>
-					<div className={styles.buttonWrapper}>
-						<button onClick={closeModal} className={styles.cancelButton}>Cancel</button>
-						<button onClick={closeModal} type="submit" className={styles.agreeButton}>Save</button>
-					</div>
-				</div>
 			</form>
+			<div className={styles.footerModal}>
+				<div className={styles.buttonWrapper}>
+					<button onClick={closeModal} className={styles.cancelButton}>Cancel</button>
+					<button onClick={closeModal} type="submit" className={styles.agreeButton}>Save</button>
+				</div>
+			</div>
 		</Modal>
 	);
 };

@@ -1,5 +1,5 @@
 import styles from "./WeatherDay.module.css";
-import weather from "../../../../assets/icons/sun.svg";
+import weather from "#/icons/sun.svg";
 
 export const WeatherDay = () => {
 	return (

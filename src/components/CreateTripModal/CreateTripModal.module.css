@@ -1,3 +1,9 @@
+.modalContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 .modalFieldsWrapper {
 	display: flex;
 	padding: 20px 20px 0;

@@ -1,22 +1,19 @@
 import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
 import {fetchCurrentCity, fetchCurrentCityGeoName, fetchCurrentCityImage, setCurrentCity} from "@/store";
-import {AppDispatch, RootState} from "@/store/store.ts";
 import {setTripData} from "@/store/slices/currentWeatherSlice.ts";
 import {fetchCurrentWeatherOnTrip} from "@/store/thunks/fetchCurrentWeatherOnTrip.tsx";
 import {fetchCurrentDailyWeather} from "@/store/thunks/fetchCurrentDailyWeather.tsx";
 import {Search, Sidebar, Trips, WeatherForecast} from "@/components";
+import {ActionCreator} from "@reduxjs/toolkit";
 
 // Styles
 import styles from "./HomePage.module.css";
-import {useAppSelector} from "@/hooks/useAppSelector.ts";
 import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
-import {ActionCreator, ActionCreatorWithoutPayload, ActionCreatorWithPayload, AnyAction} from "@reduxjs/toolkit";
 
 const HomePage = () => {
 
-	const {cityImage, citySlug} = useAppSelector(state => state.currentCitySliceReducer);
-	const {weatherOnTrip, currentWeather} = useAppSelector(state => state.currentWeatherSliceReducer);
+// 	const {cityImage, citySlug} = useAppSelector(state => state.currentCitySliceReducer);
+// 	const {weatherOnTrip, currentWeather} = useAppSelector(state => state.currentWeatherSliceReducer);
 
 	const [city, setCity] = useState("");
 	const [dataCity, setDataCity] = useState("")
@@ -29,7 +26,7 @@ const HomePage = () => {
 	const [endTrip, setEndTrip] = useState("");
 
 	const [trip, setTrip] = useState(false);
-	// const [weather, setWeather] = useState(false);
+// 	const [weather, setWeather] = useState(false);
 
 	// ============
 

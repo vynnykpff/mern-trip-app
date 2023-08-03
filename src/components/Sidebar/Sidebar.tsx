@@ -9,8 +9,6 @@ export const Sidebar = () => {
 			<Profile/>
 			<WeatherDay/>
 			<Timer/>
-
-
 		</aside>
 	);
 };

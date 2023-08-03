@@ -1,5 +1,5 @@
-import {fetchCurrentCity, fetchCurrentCityGeoName, fetchCurrentCityImage, setCurrentCity,} from "../store";
-import {useSelector} from "react-redux";
+import {useAppSelector} from "@/hooks/useAppSelector.ts";
+import {fetchCurrentCity, fetchCurrentCityGeoName, fetchCurrentCityImage, setCurrentCity} from "@/store";
 
 export const getCityImage = async (city: string, dispatch: any, data: any) => {
 	dispatch(setCurrentCity(city));
@@ -7,7 +7,7 @@ export const getCityImage = async (city: string, dispatch: any, data: any) => {
 	await dispatch(fetchCurrentCity());
 	await dispatch(fetchCurrentCityGeoName());
 
-	const state = useSelector((state) => state.currentCitySliceReducer);
+	const state = useAppSelector((state) => state.currentCitySliceReducer);
 
 	console.log(state)
 
