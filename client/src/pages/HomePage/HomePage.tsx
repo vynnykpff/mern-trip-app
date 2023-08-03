@@ -11,6 +11,10 @@ import styles from "./HomePage.module.css";
 import {Modal} from "../../components/ui/Modal/Modal.tsx";
 
 const HomePage = () => {
+
+
+
+
 	const {cityImage, citySlug} = useSelector((state: RootState) => state.currentCitySliceReducer);
 	const {weatherOnTrip, currentWeather} = useSelector((state: RootState) => state.currentWeatherSliceReducer);
 
@@ -86,7 +90,6 @@ const HomePage = () => {
 
 				<WeatherForecast/>
 
-				<Modal/>
 
 			</div>
 

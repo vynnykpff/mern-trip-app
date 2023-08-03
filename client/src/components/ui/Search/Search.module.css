@@ -6,11 +6,11 @@
 
 .form {
 	--timing: 0.3s;
-	--width-of-input: 200px;
-	--height-of-input: 40px;
+	--width-of-input: 250px;
+	--height-of-input: 50px;
 	--border-height: 2px;
 	--input-bg: #f2f4f8;
-	--border-radius: 12px;
+	--border-radius: 10px;
 	--after-border-radius: 1px;
 
 	position: relative;

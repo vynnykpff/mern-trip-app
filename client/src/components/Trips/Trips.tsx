@@ -3,8 +3,14 @@ import styles from "./Trips.module.css";
 import berlinImage from "../../assets/images/berlin.jpg";
 import barcelonaImage from "../../assets/images/barcelona.jpg";
 import tokyoImage from "../../assets/images/tokyo.jpg";
+import {useState} from "react";
+import {Modal} from "../ui/Modal/Modal.tsx";
 
 export const Trips = () => {
+	const [modalActive, setModalActive] = useState(false);
+	console.log(modalActive);
+
+
 	return (
 		<section className={styles.tripsWrapper}>
 			<div className={styles.tripCard}>
@@ -30,7 +36,11 @@ export const Trips = () => {
 					<p className={styles.tripDate}>12.08.2023 - 21.08.-2023</p>
 				</div>
 			</div>
-			<Button/>
+			<Button setModalActive={setModalActive} modalActive={modalActive}/>
+
+
+			<Modal modalActive={modalActive} setModalActive={setModalActive}/>
+
 		</section>
 	);
 };
