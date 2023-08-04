@@ -1,12 +1,14 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import currentCitySliceReducer from "./slices/currentCitySlice";
-import currentWeatherSliceReducer from "./slices/currentWeatherSlice";
+import currentCitySliceReducer from "./slices/currentCitySlice/slice.ts";
+import currentWeatherSliceReducer from "./slices/currentWeatherSlice/slice.ts";
 import uiSliceReducer from "./slices/uiSlice";
+import userSliceReducer from "./slices/userSlice/slice.ts";
 
 const rootReducer = combineReducers({
 	currentCitySliceReducer,
 	currentWeatherSliceReducer,
 	uiSliceReducer,
+	userSliceReducer,
 });
 
 export const store = configureStore({

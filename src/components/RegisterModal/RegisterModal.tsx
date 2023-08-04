@@ -1,10 +1,10 @@
 import {Modal} from "@/components/ui/Modal/Modal.tsx";
 import {useForm} from "react-hook-form";
-import styles from "./CreateTripModal.module.css";
+import styles from "./RegisterModal.module.css";
 import {useUiState} from "@/hooks/useUiState.ts";
 
-export const CreateTripModal = () => {
-	const [modalActive, setModalActive] = useUiState("createTripModal");
+export const RegisterModal = () => {
+	const [modalActive, setModalActive] = useUiState("registerModal");
 	const {
 		handleSubmit,
 		register,
@@ -29,7 +29,7 @@ export const CreateTripModal = () => {
 	return (
 		<Modal className={styles.modalContainer} setModalActive={setModalActive} modalActive={modalActive} onHide={onHide}
 		       title="Create trip">
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form onClick={e => e.stopPropagation()} onSubmit={handleSubmit(onSubmit)}>
 				<div className={styles.modalFieldsWrapper}>
 					<label className={styles.modalLabel} htmlFor="city">City
 						<p className={styles.modalError}>{errors?.city &&
@@ -53,7 +53,7 @@ export const CreateTripModal = () => {
 			<div className={styles.footerModal}>
 				<div className={styles.buttonWrapper}>
 					<button onClick={closeModal} className={styles.cancelButton}>Cancel</button>
-					<input type="submit" className={styles.agreeButton}/>Save
+					<button onClick={closeModal} type="submit" className={styles.agreeButton}>Save</button>
 				</div>
 			</div>
 		</Modal>

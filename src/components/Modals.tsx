@@ -11,9 +11,9 @@ export const Modals = () => {
 				if (!uiState[key]) {
 					return null;
 				}
-				
+
 				const Component = components[key];
-				
+
 				return (
 					<Component key={key}/>
 				)

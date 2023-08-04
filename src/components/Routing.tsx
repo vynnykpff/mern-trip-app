@@ -18,12 +18,14 @@ export const Routing = () => {
 			<Suspense fallback={<Loader/>}>
 				<Routes>
 					<Route path={home} element={<HomePage/>}/>
+
 					<Route path={profile} element={<ProfilePage/>}>
 						<Route path={profile} element={<ProfileContent/>}/>
 						<Route path={profileHome} element={<ProfileHome/>}/>
 						<Route path={profileArchive} element={<ProfileArchive/>}/>
 						<Route path={profileSettings} element={<ProfileSettings/>}/>
 					</Route>
+
 					<Route path={all} element={<NotFoundPage/>}/>
 				</Routes>
 			</Suspense>
