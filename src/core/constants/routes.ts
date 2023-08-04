@@ -9,4 +9,4 @@ export const ROUTES = {
 	all: '*',
 };
 
-export const {home, profile, profileHome, profileSettings, profileArchive, all} = ROUTES;
+export const {home, profile, profileHome, profileSettings, profileArchive, login, register, all} = ROUTES;

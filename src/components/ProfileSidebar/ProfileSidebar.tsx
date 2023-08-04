@@ -1,16 +1,24 @@
 import {LuArchive, LuHome, LuLogOut, LuSettings} from "react-icons/lu";
-import profileLogo from "@/assets/images/profileLogo.png"
 import styles from "./ProfileSidebar.module.css";
-import {NavLink} from "react-router-dom";
-import {profileArchive, profileHome, profileSettings} from "@/core/constants/routes.ts";
+import {NavLink, useNavigate} from "react-router-dom";
+import {home, profileArchive, profileHome, profileSettings} from "@/core/constants/routes.ts";
+import {useAppSelector} from "@/hooks/useAppSelector.ts";
 
 export const ProfileSidebar = () => {
+	const {user} = useAppSelector(state => state.userSliceReducer);
+	const navigate = useNavigate();
+
+	const onLogoutClick = () => {
+		localStorage.removeItem("accessToken")
+		navigate(home);
+	}
+
 	return (
 		<aside className={styles.profileSidebarWrapper}>
 			<div>
 				<div className={styles.profileHeader}>
-					<h4 className={styles.profileUserName}>Project Board</h4>
-					<img className={styles.profileUserImage} src={profileLogo} alt=""/>
+					<h4 className={styles.profileUserName}>{user!.username}</h4>
+					<img className={styles.profileUserImage} src={user!.avatar} alt=""/>
 					<p className={styles.profileTripCount}>Count trips: 5</p>
 				</div>
 
@@ -21,7 +29,7 @@ export const ProfileSidebar = () => {
 				</ul>
 
 			</div>
-			<LuLogOut className={styles.logOutIcon}/>
+			<LuLogOut onClick={onLogoutClick} className={styles.logOutIcon}/>
 		</aside>
 	);
 };

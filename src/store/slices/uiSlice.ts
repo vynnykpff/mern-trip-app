@@ -1,17 +1,15 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {FC} from "react";
-import {CreateTripModal} from "@/components/CreateTripModal/CreateTripModal.tsx";
 
 export type UiState = {
 	createTripModal: boolean,
+	loginModal: boolean,
+	registerModal: boolean,
 }
 
 const initialState: UiState = {
-	createTripModal: false
-}
-
-export const components: Record<keyof UiState, FC> = {
-	createTripModal: CreateTripModal,
+	createTripModal: false,
+	loginModal: false,
+	registerModal: false,
 }
 
 export const uiSlice = createSlice({

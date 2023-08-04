@@ -1,14 +1,15 @@
 import {useEffect, useState} from "react";
-import {fetchCurrentCity, fetchCurrentCityGeoName, fetchCurrentCityImage, setCurrentCity} from "@/store";
-import {setTripData} from "@/store/slices/currentWeatherSlice.ts";
-import {fetchCurrentWeatherOnTrip} from "@/store/thunks/fetchCurrentWeatherOnTrip.tsx";
-import {fetchCurrentDailyWeather} from "@/store/thunks/fetchCurrentDailyWeather.tsx";
 import {Search, Sidebar, Trips, WeatherForecast} from "@/components";
 import {ActionCreator} from "@reduxjs/toolkit";
-
-// Styles
 import styles from "./HomePage.module.css";
 import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
+import {fetchCurrentWeatherOnTrip} from "@/store/slices/currentWeatherSlice/thunks/fetchCurrentWeatherOnTrip.ts";
+import {fetchCurrentDailyWeather} from "@/store/slices/currentWeatherSlice/thunks/fetchCurrentDailyWeather.ts";
+import {setTripData} from "@/store/slices/currentWeatherSlice/slice.ts";
+import {setCurrentCity} from "@/store/slices/currentCitySlice/slice.ts";
+import {fetchCurrentCity} from "@/store/slices/currentCitySlice/thunks/fetchCurrentCity.ts";
+import {fetchCurrentCityGeoName} from "@/store/slices/currentCitySlice/thunks/fetchCurrentCityGeoName.ts";
+import {fetchCurrentCityImage} from "@/store/slices/currentCitySlice/thunks/fetchCurrentCityImage.ts";
 
 const HomePage = () => {
 
@@ -35,6 +36,7 @@ const HomePage = () => {
 			return;
 		}
 		dispatch(setCurrentCity(city));
+
 		dispatch(fetchCurrentCity());
 		dispatch(fetchCurrentCityGeoName());
 		dispatch(fetchCurrentCityImage());

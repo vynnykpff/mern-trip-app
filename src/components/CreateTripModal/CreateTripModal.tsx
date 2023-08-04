@@ -29,7 +29,7 @@ export const CreateTripModal = () => {
 	return (
 		<Modal className={styles.modalContainer} setModalActive={setModalActive} modalActive={modalActive} onHide={onHide}
 		       title="Create trip">
-			<form onClick={e => e.stopPropagation()} onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className={styles.modalFieldsWrapper}>
 					<label className={styles.modalLabel} htmlFor="city">City
 						<p className={styles.modalError}>{errors?.city &&
@@ -53,7 +53,7 @@ export const CreateTripModal = () => {
 			<div className={styles.footerModal}>
 				<div className={styles.buttonWrapper}>
 					<button onClick={closeModal} className={styles.cancelButton}>Cancel</button>
-					<button onClick={closeModal} type="submit" className={styles.agreeButton}>Save</button>
+					<input type="submit" className={styles.agreeButton}/>Save
 				</div>
 			</div>
 		</Modal>
