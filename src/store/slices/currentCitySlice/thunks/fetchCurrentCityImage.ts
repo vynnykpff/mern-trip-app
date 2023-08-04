@@ -15,7 +15,7 @@ export const asyncThunk = createAsyncThunk(
 
 			const response = await CityService.getCurrentCityImage(cityName);
 			return response;
-		} catch (error) {
+		} catch (error: any) {
 			return rejectWithValue(error.message);
 		}
 	}

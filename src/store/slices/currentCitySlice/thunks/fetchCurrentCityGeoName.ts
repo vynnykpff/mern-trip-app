@@ -12,7 +12,7 @@ export const asyncThunk = createAsyncThunk(
 			const response = await CityService.getCurrentCityGeoName(dataCityGeo);
 
 			return response["city:urban_area"] ? response["city:urban_area"].href : false
-		} catch (error) {
+		} catch (error: any) {
 			return rejectWithValue(error.message);
 		}
 	}

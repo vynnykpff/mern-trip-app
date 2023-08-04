@@ -1,32 +1,28 @@
-import {AuthService} from "@/services/AuthService.ts";
 import {createAsyncThunk} from "@reduxjs/toolkit";
+import {AuthService} from "@/services/AuthService.ts";
 import {StoreAsyncThunkHandler} from "@/types/StoreAsyncThunkHandler.ts";
-import {UserState} from "@/store/slices/userSlice";
 import {StoreAsyncThunk} from "@/types/StoreAsyncThunk.ts";
-import {AuthData} from "@/types/AuthData.ts";
+import {UserState} from "@/store/slices/userSlice";
 
 const asyncThunk = createAsyncThunk(
-	'user/register',
-	async function (registerData: AuthData, {rejectWithValue}) {
+	'user/refresh',
+	async function (_, {rejectWithValue}) {
 		try {
-			const {data} = await AuthService.register(registerData);
+			const {data} = await AuthService.refresh();
 			return data;
-		} catch (error) {
+		} catch (error: any) {
 			return rejectWithValue(error.message);
 		}
 	}
 );
 
 const storeHandler: StoreAsyncThunkHandler<UserState> = (state, action) => {
-	state.user = {
-		...action.payload.user,
-	};
-	state.authorized = true;
 	state.accessToken = action.payload.accessToken;
+	state.authorized = true;
 	localStorage.setItem('accessToken', state.accessToken!);
 }
 
-export const register: StoreAsyncThunk<UserState> = {
+export const refresh: StoreAsyncThunk<UserState> = {
 	asyncThunk,
 	storeHandler
 }

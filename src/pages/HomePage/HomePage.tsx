@@ -1,8 +1,6 @@
 import {useEffect, useState} from "react";
 import {Search, Sidebar, Trips, WeatherForecast} from "@/components";
 import {ActionCreator} from "@reduxjs/toolkit";
-
-// Styles
 import styles from "./HomePage.module.css";
 import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
 import {fetchCurrentWeatherOnTrip} from "@/store/slices/currentWeatherSlice/thunks/fetchCurrentWeatherOnTrip.ts";
@@ -12,8 +10,6 @@ import {setCurrentCity} from "@/store/slices/currentCitySlice/slice.ts";
 import {fetchCurrentCity} from "@/store/slices/currentCitySlice/thunks/fetchCurrentCity.ts";
 import {fetchCurrentCityGeoName} from "@/store/slices/currentCitySlice/thunks/fetchCurrentCityGeoName.ts";
 import {fetchCurrentCityImage} from "@/store/slices/currentCitySlice/thunks/fetchCurrentCityImage.ts";
-import {register} from "@/store/slices/userSlice/thunks/register.ts";
-import {login} from "@/store/slices/userSlice/thunks/login.ts";
 
 const HomePage = () => {
 
@@ -40,6 +36,7 @@ const HomePage = () => {
 			return;
 		}
 		dispatch(setCurrentCity(city));
+
 		dispatch(fetchCurrentCity());
 		dispatch(fetchCurrentCityGeoName());
 		dispatch(fetchCurrentCityImage());
@@ -65,10 +62,6 @@ const HomePage = () => {
 		dispatch(setTripData({startTrip, endTrip, city}))
 		setTrip(prev => !prev);
 	}
-
-	useEffect(() => {
-		dispatch(register.asyncThunk({username: 'arti1234', password: 'dfgefgrthrt'}))
-	}, [])
 
 	return (
 		<div className={styles.homeWrapper}>

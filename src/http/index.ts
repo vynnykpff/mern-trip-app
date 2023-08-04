@@ -3,15 +3,14 @@ import {AuthResponse} from "@/types/AuthResponse.ts";
 import {store} from "@/store/store.ts";
 import {checkError} from "@/helpers";
 import {getErrorObject} from "@/helpers/getErrorObject.ts";
-import {logout} from "@/store/slices/userSlice/thunks/logout.ts";
 import {userSlice} from "@/store/slices/userSlice/slice";
+import {logout} from "@/store/slices/userSlice/thunks/auth/logout.ts";
 
 export const serverURL = import.meta.env.VITE_SERVER_URL;
-console.log(import.meta.env.VITE_SERVER_URL, import.meta.env.VITE_WEATHER_API_KEY);
 const baseURL = serverURL + '/api';
 
 axios.interceptors.response.use((config) => config, async (err) => {
-	checkError(err, getErrorObject(err).message)
+	throw checkError(getErrorObject(err).message)
 })
 
 const $api = axios.create({
@@ -54,8 +53,10 @@ $api.interceptors.response.use(
 				store.dispatch(logout.asyncThunk(null));
 			}
 		}
-		throw error;
+		throw checkError(getErrorObject(error).message)
 	},
 );
+
+
 
 export default $api;

@@ -1,7 +1,7 @@
 import {DEFAULT_ERROR_MESSAGE} from "@/helpers/checkError.ts";
 
 export const getErrorObject = (e: any) => {
-	if (!e.repsonse?.data.message) {
+	if (!e.response?.data.message) {
 		return {
 			message: DEFAULT_ERROR_MESSAGE
 		}

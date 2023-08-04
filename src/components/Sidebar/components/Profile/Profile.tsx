@@ -13,7 +13,7 @@ export const Profile = () => {
 
 	const onClick = (e: MouseEvent) => {
 		e.preventDefault();
-		if (authorized) {
+		if (authorized && localStorage.getItem("accessToken")) {
 			navigate(profile)
 		} else {
 			setLoginModal(true)

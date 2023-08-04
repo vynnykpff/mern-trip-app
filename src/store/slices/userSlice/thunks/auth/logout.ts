@@ -1,7 +1,7 @@
 import {AuthService} from "@/services/AuthService.ts";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {StoreAsyncThunkHandler} from "@/types/StoreAsyncThunkHandler.ts";
-import {UserState} from "@/store/slices/userSlice";
+import {initialState, UserState} from "@/store/slices/userSlice";
 import {StoreAsyncThunk} from "@/types/StoreAsyncThunk.ts";
 
 const asyncThunk = createAsyncThunk(
@@ -10,14 +10,14 @@ const asyncThunk = createAsyncThunk(
 		try {
 			await AuthService.logout()
 			localStorage.removeItem('accessToken');
-		} catch (error) {
+		} catch (error: any) {
 			return rejectWithValue(error.message);
 		}
 	}
 );
 
-const storeHandler: StoreAsyncThunkHandler<UserState> = (state) => {
-	return state;
+const storeHandler: StoreAsyncThunkHandler<UserState> = () => {
+	return initialState;
 }
 
 export const logout: StoreAsyncThunk<UserState> = {

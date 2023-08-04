@@ -8,7 +8,7 @@ export interface UserState {
 	accessToken: string | null;
 }
 
-const initialState: UserState = {
+export const initialState: UserState = {
 	authorized: false,
 	user: null,
 	accessToken: null

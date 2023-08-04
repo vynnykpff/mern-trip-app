@@ -43,7 +43,7 @@ export const currentWeatherSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		for (const thunk of currentWeatherSliceThunks) {
-		    builder.addCase(thunk.asyncThunk.fulfilled, thunk.storeHandler);
+			builder.addCase(thunk.asyncThunk.fulfilled, thunk.storeHandler);
 		}
 	}
 })

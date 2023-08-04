@@ -15,7 +15,7 @@ const asyncThunk = createAsyncThunk(
 			const response = await WeatherService.getCurrentWeatherOnDay(tripData);
 
 			return response
-		} catch (error) {
+		} catch (error: any) {
 			return rejectWithValue(error.message);
 		}
 	}

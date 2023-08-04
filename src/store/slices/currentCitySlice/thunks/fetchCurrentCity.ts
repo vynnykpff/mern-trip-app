@@ -12,7 +12,7 @@ export const asyncThunk = createAsyncThunk(
 			const response = await CityService.getCurrentCity(dataCity);
 
 			return response;
-		} catch (error) {
+		} catch (error: any) {
 			return rejectWithValue(error.message);
 		}
 	}
