@@ -1,1 +1,1 @@
-export {checkError} from "./checkError.ts"
+export {checkError} from "./checkError.ts";

@@ -1,43 +1,62 @@
 import {LargeButton} from "@/components";
 import styles from "./Trips.module.css";
-import berlinImage from "../../assets/images/berlin.jpg";
-import barcelonaImage from "../../assets/images/barcelona.jpg";
-import tokyoImage from "../../assets/images/tokyo.jpg";
 import {useUiState} from "@/hooks/useUiState.ts";
+import {useAppSelector} from "@/hooks/useAppSelector";
+import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
+import {MouseEvent, useContext} from "react";
+import {homePageContext} from "@/pages/HomePage/HomePageContext.tsx";
+import {Trip} from "@/types/Trip.ts";
+import {AiOutlineDelete} from "react-icons/ai";
+import {HiPencilAlt} from "react-icons/hi";
+import {deleteT} from "@/pages/HomePage/HomePage.tsx";
 
 export const Trips = () => {
 	const [_, setModalActive] = useUiState("createTripModal");
+	const [updateTripModal, setUpdateTripModal] = useUiState("updateTripModal");
+	const {trips, isPending} = useAppSelector(state => state.tripsSliceReducer);
+	const {setCurrentCity} = useContext(homePageContext);
+	const dispatch = useAppDispatch();
 
 	const onCreateTripClick = () => {
 		setModalActive(true);
+	};
+
+	const onTripClick = (trip: Trip) => {
+		setCurrentCity(trip)
 	}
+
+	const onUpdateTripClick = (e:MouseEvent, trip: Trip) => {
+    e.stopPropagation();
+		setUpdateTripModal(true, {trip})
+	}
+
+	const onDeleteTripClick = (e: MouseEvent, trip: Trip) => {
+		// TODO: Modal
+		e.stopPropagation();
+		dispatch(deleteT.asyncThunk(trip));
+	}
+
+	const renderTrips = () => {
+		if (isPending) {
+			return "Content is on loading";
+		} else {
+			return trips.map((trip) => (
+				<div onClick={() => onTripClick(trip)} key={trip.id} className={styles.tripCard}>
+					<img className={styles.cityImage} src={trip.image} alt={trip.cityName}/>
+					<div className={styles.tripDescription}>
+						<p className={styles.tripTitle}>{trip.cityName}</p>
+						<p className={styles.tripDate}>{trip.startDate} - {trip.endDate}</p>
+					</div>
+					<HiPencilAlt onClick={(e) => onUpdateTripClick(e, trip)}/>
+					<AiOutlineDelete onClick={(e) => onDeleteTripClick(e, trip)}/>
+				</div>
+			));
+		}
+	};
 
 	return (
 		<section className={styles.tripsWrapper}>
-			<div className={styles.tripCard}>
-				<img className={styles.cityImage} src={berlinImage} alt="berlin"/>
-				<div className={styles.tripDescription}>
-					<p className={styles.tripTitle}>Berlin</p>
-					<p className={styles.tripDate}>14.07.2023 - 18.07.-2023</p>
-				</div>
-			</div>
-
-			<div className={styles.tripCard}>
-				<img className={styles.cityImage} src={tokyoImage} alt="tokyo"/>
-				<div className={styles.tripDescription}>
-					<p className={styles.tripTitle}>Tokyo</p>
-					<p className={styles.tripDate}>24.07.2023 - 05.08.-2023</p>
-				</div>
-			</div>
-
-			<div className={styles.tripCard}>
-				<img className={styles.cityImage} src={barcelonaImage} alt="barcelona"/>
-				<div className={styles.tripDescription}>
-					<p className={styles.tripTitle}>Barcelona</p>
-					<p className={styles.tripDate}>12.08.2023 - 21.08.-2023</p>
-				</div>
-			</div>
-
+			{renderTrips()}
 			<LargeButton onClick={onCreateTripClick}>
 				<svg className={styles.buttonIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus">
 					<path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z"></path>

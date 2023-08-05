@@ -4,11 +4,11 @@ import {Timer} from "./components/Timer/Timer.tsx";
 import {Profile} from "./components/Profile/Profile.tsx";
 
 export const Sidebar = () => {
-	return (
-		<aside className={styles.sidebarWrapper}>
-			<Profile/>
-			<WeatherDay/>
-			<Timer/>
-		</aside>
-	);
+    return (
+        <aside className={styles.sidebarWrapper}>
+            <Profile/>
+            <WeatherDay/>
+            <Timer/>
+        </aside>
+    );
 };

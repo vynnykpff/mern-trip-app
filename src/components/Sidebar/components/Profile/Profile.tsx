@@ -6,21 +6,21 @@ import {useAppSelector} from "@/hooks/useAppSelector.ts";
 import {MouseEvent} from "react";
 
 export const Profile = () => {
-	const navigate = useNavigate();
-	const {authorized} = useAppSelector(state => state.userSliceReducer);
+    const navigate = useNavigate();
+    const {authorized} = useAppSelector(state => state.userSliceReducer);
 
-	const onClick = (e: MouseEvent) => {
-		e.preventDefault();
-		if (authorized && localStorage.getItem("accessToken")) {
-			navigate(profile)
-		} else {
-			navigate(login);
-		}
-	}
+    const onClick = (e: MouseEvent) => {
+        e.preventDefault();
+        if (authorized && localStorage.getItem("accessToken")) {
+            navigate(profile);
+        } else {
+            navigate(login);
+        }
+    };
 
-	return (
-		<a className={styles.profileWrapper} onClick={onClick}>
-			<BiUserCircle className={styles.icon}/>
-		</a>
-	);
+    return (
+        <a className={styles.profileWrapper} onClick={onClick}>
+            <BiUserCircle className={styles.icon}/>
+        </a>
+    );
 };

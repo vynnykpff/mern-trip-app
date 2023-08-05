@@ -8,38 +8,40 @@ import {RegisterModal} from "@/components/RegisterModal/RegisterModal.tsx";
 import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
 import {refresh} from "@/store/slices/userSlice/thunks/auth/refresh.ts";
 import {getUserData} from "@/store/slices/userSlice/thunks/user/getUserData.ts";
+import {UpdateTripModal} from "@/components/UpdateTripModal/UpdateTripModal.tsx";
 
-export const components: Record<keyof UiState, FC> = {
-	createTripModal: CreateTripModal,
-	loginModal: LoginModal,
-	registerModal: RegisterModal,
-}
+export const components: Record<keyof UiState, FC<any>> = {
+    createTripModal: CreateTripModal,
+    updateTripModal: UpdateTripModal,
+    loginModal: LoginModal,
+    registerModal: RegisterModal,
+};
 
 export const UiComponents = () => {
-	const uiState = useAppSelector(state => state.uiSliceReducer);
+    const uiState = useAppSelector(state => state.uiSliceReducer);
 
-	const dispatch = useAppDispatch();
-	useEffect(() => {
-		if (localStorage.getItem('accessToken')) {
-			dispatch(refresh.asyncThunk(null))
-			dispatch(getUserData.asyncThunk(null));
-		}
-	}, [])
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        if (localStorage.getItem("accessToken")) {
+            dispatch(refresh.asyncThunk(null));
+            dispatch(getUserData.asyncThunk(null));
+        }
+    }, []);
 
-	return (
-		<>
-			{Object.keys(uiState).map(i => {
-				const key = i as keyof typeof uiState;
-				if (!uiState[key]) {
-					return null;
-				}
+    return (
+        <>
+            {Object.keys(uiState).map(i => {
+                const key = i as keyof typeof uiState;
+                if (!uiState[key].visible) {
+                    return null;
+                }
 
-				const Component = components[key];
+                const Component = components[key];
 
-				return (
-					<Component key={key}/>
-				)
-			})}
-		</>
-	);
+                return (
+                    <Component key={key} {...uiState[key].props}/>
+                );
+            })}
+        </>
+    );
 };

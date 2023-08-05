@@ -5,22 +5,22 @@ import {UserService} from "@/services/UserService.ts";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
 const asyncThunk = createAsyncThunk(
-	'user/get_user_data',
-	async function (_, {rejectWithValue}) {
-		try {
-			const {data} = await UserService.getUserData();
-			return data;
-		} catch (error: any) {
-			return rejectWithValue(error.message);
-		}
-	}
+    "user/get_user_data",
+    async function (_, {rejectWithValue}) {
+        try {
+            const {data} = await UserService.getUserData();
+            return data;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
 );
 
 const storeHandler: StoreAsyncThunkHandler<UserState> = (state, action) => {
-	state.user = {...state.user, ...action.payload}
-}
+    state.user = {...state.user, ...action.payload};
+};
 
 export const getUserData: StoreAsyncThunk<UserState> = {
-	asyncThunk,
-	storeHandler
-}
+    asyncThunk,
+    storeHandler
+};

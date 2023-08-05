@@ -1,7 +1,7 @@
 export const ProfileArchive = () => {
-	return (
-		<div>
-			ProfileArchive
-		</div>
-	);
+    return (
+        <div>
+            ProfileArchive
+        </div>
+    );
 };

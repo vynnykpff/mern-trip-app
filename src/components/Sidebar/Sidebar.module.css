@@ -1,11 +1,11 @@
 .sidebarWrapper {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 500px;
-	background: url('!/clouds_bg_dark.png');
-	padding: 30px;
-	min-height: 100vh;
-	position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    background: url('!/clouds_bg_dark.png');
+    padding: 30px;
+    min-height: 100vh;
+    position: relative;
 }

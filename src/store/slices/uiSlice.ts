@@ -1,19 +1,40 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {UpdateTripModalProps} from "@/components/UpdateTripModal/UpdateTripModal.tsx";
+
+export type ComponentsState<P extends {} = {}> = {
+	visible: boolean;
+	props: P | {};
+}
 
 export type UiState = {
-	createTripModal: boolean,
-	loginModal: boolean,
-	registerModal: boolean,
+	createTripModal: ComponentsState;
+	updateTripModal: ComponentsState<UpdateTripModalProps>;
+	loginModal: ComponentsState;
+	registerModal: ComponentsState;
 }
 
 const initialState: UiState = {
-	createTripModal: false,
-	loginModal: false,
-	registerModal: false,
-}
+	createTripModal: {
+		visible: false,
+		props: {}
+	},
+	updateTripModal: {
+		visible: false,
+		props: {},
+	},
+	loginModal: {
+		visible: false,
+		props: {}
+	},
+	registerModal: {
+		visible: false,
+		props: {}
+	},
+};
+
 
 export const uiSlice = createSlice({
-	name: 'ui_slice',
+	name: "ui_slice",
 	initialState,
 	reducers: {
 		setUiState: (state, action: PayloadAction<Partial<UiState>>) => {
@@ -23,7 +44,7 @@ export const uiSlice = createSlice({
 			};
 		}
 	}
-})
+});
 
-export const {setUiState} = uiSlice.actions
+export const {setUiState} = uiSlice.actions;
 export default uiSlice.reducer;

@@ -1,3 +1,3 @@
-export {default as userSlice} from './slice';
-export * from './slice';
-export * from './thunks';
+export {default as userSlice} from "./slice";
+export * from "./slice";
+export * from "./thunks";

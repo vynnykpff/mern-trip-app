@@ -5,18 +5,18 @@ import {withAuthorizedRoute} from "@/HOCs/withAuthorizedRoute.tsx";
 import {useAppSelector} from "@/hooks/useAppSelector.ts";
 
 const ProfilePage = () => {
-	const {user} = useAppSelector(state => state.userSliceReducer);
+    const {user} = useAppSelector(state => state.userSliceReducer);
 
-	if (user === null) {
-		return null;
-	}
+    if (user === null) {
+        return null;
+    }
 
-	return (
-		<div className={styles.profileContainer}>
-			<ProfileSidebar/>
-			<Outlet/>
-		</div>
-	);
+    return (
+        <div className={styles.profileContainer}>
+            <ProfileSidebar/>
+            <Outlet/>
+        </div>
+    );
 };
 
 export default withAuthorizedRoute(ProfilePage);

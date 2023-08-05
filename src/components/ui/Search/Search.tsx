@@ -1,4 +1,4 @@
-import styles from './Search.module.css';
+import styles from "./Search.module.css";
 import {LuDelete, LuSearch} from "react-icons/lu";
 
 export const Search = () => {

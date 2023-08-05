@@ -1,5 +1,5 @@
 export type PatchUser = {
-	username: string;
-	password: string;
-	avatar: string;
+    username: string;
+    password: string;
+    avatar: string;
 };

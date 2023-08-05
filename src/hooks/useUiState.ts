@@ -2,15 +2,15 @@ import {setUiState, UiState} from "@/store/slices/uiSlice.ts";
 import {useAppSelector} from "@/hooks/useAppSelector.ts";
 import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
 
-type SetState = (value: boolean) => void;
+type SetState<T extends keyof UiState> = (visible: boolean, props?: UiState[T]["props"]) => void;
 
-export const useUiState = (key: keyof UiState): [boolean, SetState] => {
+export const useUiState = <T extends keyof UiState>(key: T): [boolean, SetState<T>] => {
 	const uiState = useAppSelector(state => state.uiSliceReducer);
-	const dispatch = useAppDispatch()
+	const dispatch = useAppDispatch();
 
-	const setState = (value: boolean) => {
-		dispatch(setUiState({[key]: value}))
-	}
+	const setState = (visible: boolean, props?: UiState[T]["props"]) => {
+		dispatch(setUiState({[key]: {visible, props: props ?? {}}}));
+	};
 
-	return [uiState[key], setState]
-}
+	return [uiState[key].visible, setState];
+};
