@@ -1,6 +1,6 @@
-import {Route, Routes, useLocation} from 'react-router-dom';
+import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import {lazy, Suspense, useEffect} from 'react';
-import {all, home, profile, profileArchive, profileHome, profileSettings} from "@/core";
+import {all, home, login, profile, profileArchive, profileHome, profileSettings, register} from "@/core";
 import {Layout} from "@/components/Layout/Layout.tsx";
 import {Loader} from "@/components/ui/Loader/Loader.tsx";
 import {ProfileHome} from "@/components/ProfileContent/components/ProfileHome/ProfileHome.tsx";
@@ -10,16 +10,21 @@ import {ProfileContent} from "@/components/ProfileContent/ProfileContent.tsx";
 import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
 import {useAppSelector} from "@/hooks/useAppSelector.ts";
 import {setUiState} from "@/store/slices/uiSlice.ts";
+import {addListener} from "@reduxjs/toolkit";
 
 const HomePage = lazy(() => import('@/pages/HomePage/HomePage.tsx'));
 const ProfilePage = lazy(() => import('@/pages/ProfilePage/ProfilePage.tsx'));
+const LoginPage = lazy(() => import('@/pages/LoginPage/LoginPage.tsx'));
+const RegisterPage = lazy(() => import('@/pages/RegisterPage/RegisterPage.tsx'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage/NotFoundPage.tsx'));
+
 
 export const Routing = () => {
 	const dispatch = useAppDispatch();
 	const location = useLocation();
 	const uiState = useAppSelector(state => state.uiSliceReducer);
-
+	const {authorized} = useAppSelector(state => state.userSliceReducer);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const keys: (keyof typeof uiState)[] = [];
@@ -34,6 +39,7 @@ export const Routing = () => {
 			dispatch(setUiState({[key]: false}));
 		}
 
+
 	}, [location.pathname]);
 
 	return (
@@ -41,6 +47,9 @@ export const Routing = () => {
 			<Suspense fallback={<Loader/>}>
 				<Routes>
 					<Route path={home} element={<HomePage/>}/>
+
+					<Route path={login} element={<LoginPage/>}/>
+					<Route path={register} element={<RegisterPage/>}/>
 
 					<Route path={profile} element={<ProfilePage/>}>
 						<Route path={profile} element={<ProfileContent/>}/>

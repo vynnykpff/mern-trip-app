@@ -1,16 +1,18 @@
 import {LuArchive, LuHome, LuLogOut, LuSettings} from "react-icons/lu";
 import styles from "./ProfileSidebar.module.css";
 import {NavLink, useNavigate} from "react-router-dom";
-import {home, profileArchive, profileHome, profileSettings} from "@/core/constants/routes.ts";
+import {login, profileArchive, profileHome, profileSettings} from "@/core/constants/routes.ts";
 import {useAppSelector} from "@/hooks/useAppSelector.ts";
+import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
+import {logout} from "@/store/slices/userSlice/thunks/auth/logout.ts";
 
 export const ProfileSidebar = () => {
+	const dispatch = useAppDispatch();
 	const {user} = useAppSelector(state => state.userSliceReducer);
 	const navigate = useNavigate();
 
 	const onLogoutClick = () => {
-		localStorage.removeItem("accessToken")
-		navigate(home);
+		dispatch(logout.asyncThunk(null));
 	}
 
 	return (

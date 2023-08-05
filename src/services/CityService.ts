@@ -5,21 +5,35 @@ export class CityService {
 		baseURL: import.meta.env.VITE_CITY_SERVER_URL
 	})
 
-	static async getCurrentCity(city: string) {
+	private static async getCity(city: string) {
 		const response = await this.cityApi.get(`/cities/?search=${city}`);
+		const res = response.data._embedded["city:search-results"][0]._links["city:item"]?.href;
 
-		return response.data._embedded["city:search-results"][0]._links["city:item"]?.href
+		const data = res.split('/');
+		return data[data.length - 2];
 	}
 
-	static async getCurrentCityGeoName(geo: string) {
+	private static async getCityGeoName(geo: string) {
 		const response = await this.cityApi.get(`/cities/${geo}`);
+		const links = response.data._links
+		const res = links["city:urban_area"] ? links["city:urban_area"].href : false;
 
-		return response.data._links
+		if (typeof res !== "boolean" && res.length) {
+			const data = res.split('slug:');
+			return data[data.length - 1];
+		}
+		return res;
 	}
 
-	static async getCurrentCityImage(city: string) {
-		const response = await this.cityApi.get(`/urban_areas/slug:${city}images`)
+	static async getCityImage(cityName: string) {
+		const geo = await this.getCity(cityName);
+		const city = await this.getCityGeoName(geo);
 
+		if (!city) {
+			return "";
+		}
+
+		const response = await this.cityApi.get(`/urban_areas/slug:${city}images`)
 		return response.data.photos[0].image.mobile
 	}
 }

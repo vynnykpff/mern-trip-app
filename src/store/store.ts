@@ -1,5 +1,5 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import currentCitySliceReducer from "./slices/currentCitySlice/slice.ts";
+import currentCitySliceReducer from "@/store/slices/tripsSlice/slice.ts";
 import currentWeatherSliceReducer from "./slices/currentWeatherSlice/slice.ts";
 import uiSliceReducer from "./slices/uiSlice";
 import userSliceReducer from "./slices/userSlice/slice.ts";

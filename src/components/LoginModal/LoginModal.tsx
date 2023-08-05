@@ -16,7 +16,6 @@ export const LoginModal = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-
 	const {
 		handleSubmit,
 		register,

@@ -3,6 +3,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {StoreAsyncThunkHandler} from "@/types/StoreAsyncThunkHandler.ts";
 import {initialState, UserState} from "@/store/slices/userSlice";
 import {StoreAsyncThunk} from "@/types/StoreAsyncThunk.ts";
+import {login} from "@/core";
 
 const asyncThunk = createAsyncThunk(
 	'user/logout',
@@ -17,6 +18,7 @@ const asyncThunk = createAsyncThunk(
 );
 
 const storeHandler: StoreAsyncThunkHandler<UserState> = () => {
+	location.replace(login);
 	return initialState;
 }
 

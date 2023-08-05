@@ -2,7 +2,7 @@ import {FC, PropsWithChildren, useEffect} from "react";
 import {useAppSelector} from "@/hooks/useAppSelector.ts";
 import {useNavigate} from "react-router-dom";
 import {UserService} from "@/services/UserService.ts";
-import {home} from "@/core";
+import {login} from "@/core";
 
 export const AuthorizedRoute: FC<PropsWithChildren> = ({children}) => {
 	const {authorized} = useAppSelector(state => state.userSliceReducer);
@@ -13,7 +13,7 @@ export const AuthorizedRoute: FC<PropsWithChildren> = ({children}) => {
 			await UserService.getUserData();
 		} catch (e) {
 			if (!authorized) {
-				navigate(home);
+				navigate(login);
 			}
 		}
 	}

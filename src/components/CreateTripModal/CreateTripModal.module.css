@@ -4,13 +4,13 @@
 	justify-content: space-between;
 }
 
-.modalFieldsWrapper {
+.fieldsWrapper {
 	display: flex;
 	padding: 20px 20px 0;
 	flex-direction: column;
 }
 
-.modalLabel {
+.formLabel {
 	font-weight: 500;
 	margin-bottom: 5px;
 	position: relative;
@@ -32,7 +32,7 @@
 	color: #b7b6b6;
 }
 
-.modalError {
+.formError {
 	color: #f00;
 	font-size: 14px;
 	position: absolute;

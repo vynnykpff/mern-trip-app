@@ -6,16 +6,19 @@ import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
 import {fetchCurrentWeatherOnTrip} from "@/store/slices/currentWeatherSlice/thunks/fetchCurrentWeatherOnTrip.ts";
 import {fetchCurrentDailyWeather} from "@/store/slices/currentWeatherSlice/thunks/fetchCurrentDailyWeather.ts";
 import {setTripData} from "@/store/slices/currentWeatherSlice/slice.ts";
-import {setCurrentCity} from "@/store/slices/currentCitySlice/slice.ts";
-import {fetchCurrentCity} from "@/store/slices/currentCitySlice/thunks/fetchCurrentCity.ts";
-import {fetchCurrentCityGeoName} from "@/store/slices/currentCitySlice/thunks/fetchCurrentCityGeoName.ts";
-import {fetchCurrentCityImage} from "@/store/slices/currentCitySlice/thunks/fetchCurrentCityImage.ts";
+import {setCurrentCity} from "@/store/slices/tripsSlice/slice.ts";
+import {fetchCurrentCity} from "@/store/slices/tripsSlice/thunks/fetchCurrentCity.ts";
+import {fetchCurrentCityGeoName} from "@/store/slices/tripsSlice/thunks/fetchCurrentCityGeoName.ts";
+import {fetchCurrentCityImage} from "@/store/slices/tripsSlice/thunks/fetchCurrentCityImage.ts";
+import {withAuthorizedRoute} from "@/HOCs/withAuthorizedRoute.tsx";
+import {useAppSelector} from "@/hooks/useAppSelector.ts";
 
 const HomePage = () => {
-
+	const {user} = useAppSelector(state => state.userSliceReducer);
+	
 // 	const {cityImage, citySlug} = useAppSelector(state => state.currentCitySliceReducer);
 // 	const {weatherOnTrip, currentWeather} = useAppSelector(state => state.currentWeatherSliceReducer);
-
+	
 	const [city, setCity] = useState("");
 	const [dataCity, setDataCity] = useState("")
 
@@ -30,7 +33,8 @@ const HomePage = () => {
 // 	const [weather, setWeather] = useState(false);
 
 	// ============
-
+	
+	
 	const getCityImage = async () => {
 		if (!city.length) {
 			return;
@@ -41,18 +45,18 @@ const HomePage = () => {
 		dispatch(fetchCurrentCityGeoName());
 		dispatch(fetchCurrentCityImage());
 	}
-
+	
 	useEffect(() => {
 		void getCityImage();
 	}, [dataCity]);
-
+	
 	const getData = async (action: ActionCreator<any>) => {
 		if (!city.length) {
 			return;
 		}
 		dispatch(action());
 	}
-
+		
 	useEffect(() => {
 		void getData(fetchCurrentWeatherOnTrip);
 		void getData(fetchCurrentDailyWeather);
@@ -63,6 +67,10 @@ const HomePage = () => {
 		setTrip(prev => !prev);
 	}
 
+	if (user === null) {
+		return null;
+	}
+	
 	return (
 		<div className={styles.homeWrapper}>
 
@@ -113,4 +121,4 @@ const HomePage = () => {
 	);
 };
 
-export default HomePage;
+export default withAuthorizedRoute(HomePage);
