@@ -4,6 +4,7 @@ import currentWeatherSliceReducer from "./slices/currentWeatherSlice/slice.ts";
 import uiSliceReducer from "./slices/uiSlice";
 import userSliceReducer from "./slices/userSlice/slice.ts";
 import tripsSliceReducer from "./slices/tripsSlice/slice.ts";
+import searchSliceReducer from "./slices/searchSlice.ts";
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     currentWeatherSliceReducer,
     uiSliceReducer,
     userSliceReducer,
-    tripsSliceReducer
+    tripsSliceReducer,
+    searchSliceReducer,
 });
 
 export const store = configureStore({

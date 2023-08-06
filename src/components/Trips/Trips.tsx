@@ -16,6 +16,8 @@ export const Trips = () => {
 	const {trips, isPending} = useAppSelector(state => state.tripsSliceReducer);
 	const {setCurrentCity} = useContext(homePageContext);
 	const dispatch = useAppDispatch();
+	const {searchValue} = useAppSelector(store => store.searchSliceReducer);
+
 
 	const onCreateTripClick = () => {
 		setModalActive(true);
@@ -25,8 +27,8 @@ export const Trips = () => {
 		setCurrentCity(trip)
 	}
 
-	const onUpdateTripClick = (e:MouseEvent, trip: Trip) => {
-    e.stopPropagation();
+	const onUpdateTripClick = (e: MouseEvent, trip: Trip) => {
+		e.stopPropagation();
 		setUpdateTripModal(true, {trip})
 	}
 
@@ -40,15 +42,19 @@ export const Trips = () => {
 		if (isPending) {
 			return "Content is on loading";
 		} else {
-			return trips.map((trip) => (
+			const filteredTrips = trips.filter(trip => {
+				return trip.cityName.toLowerCase().includes(searchValue.toLowerCase());
+			})
+
+			return filteredTrips.map((trip) => (
 				<div onClick={() => onTripClick(trip)} key={trip.id} className={styles.tripCard}>
 					<img className={styles.cityImage} src={trip.image} alt={trip.cityName}/>
 					<div className={styles.tripDescription}>
 						<p className={styles.tripTitle}>{trip.cityName}</p>
 						<p className={styles.tripDate}>{trip.startDate} - {trip.endDate}</p>
 					</div>
-					<HiPencilAlt onClick={(e) => onUpdateTripClick(e, trip)}/>
-					<AiOutlineDelete onClick={(e) => onDeleteTripClick(e, trip)}/>
+					<HiPencilAlt onClick={(e: MouseEvent) => onUpdateTripClick(e, trip)}/>
+					<AiOutlineDelete onClick={(e: MouseEvent) => onDeleteTripClick(e, trip)}/>
 				</div>
 			));
 		}
