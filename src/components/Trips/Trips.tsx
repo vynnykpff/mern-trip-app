@@ -14,17 +14,16 @@ export const Trips = () => {
 	const [_, setModalActive] = useUiState("createTripModal");
 	const [updateTripModal, setUpdateTripModal] = useUiState("updateTripModal");
 	const {trips, isPending} = useAppSelector(state => state.tripsSliceReducer);
-	const {setCurrentCity} = useContext(homePageContext);
+	const [state, setState] = useContext(homePageContext);
 	const dispatch = useAppDispatch();
 	const {searchValue} = useAppSelector(store => store.searchSliceReducer);
-
 
 	const onCreateTripClick = () => {
 		setModalActive(true);
 	};
 
 	const onTripClick = (trip: Trip) => {
-		setCurrentCity(trip)
+		setState({currentCity: trip})
 	}
 
 	const onUpdateTripClick = (e: MouseEvent, trip: Trip) => {

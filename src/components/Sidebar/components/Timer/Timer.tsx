@@ -1,31 +1,27 @@
 import styles from "./Timer.module.css";
-
-interface IData {
-    id: number;
-    value: number;
-    type: "hours" | "days" | "minutes" | "seconds";
-}
-
-const data: IData[] = [
-    {value: 30, type: "days"},
-    {value: 20, type: "hours"},
-    {value: 15, type: "minutes"},
-    {value: 10, type: "seconds"},
-].reduce<IData[]>((accum, curr) => {
-    return [...accum, {...curr, id: Math.random() * Date.now()}] as IData[];
-}, []);
+import {useContext} from "react";
+import {homePageContext} from "@/pages/HomePage/HomePageContext.tsx";
+import {getDifferenceBeetwenDates} from "@/helpers/getDifferenceBeetwenDates.ts";
 
 export const Timer = () => {
-    return (
-        <div className={styles.timerWrapper}>
-            {data.map((item) => {
-                return (
-                    <div key={item.id} className={styles.timeline}>
-                        <p className={styles.date}>{item.value}</p>
-                        <p className={styles.nameDate}>{item.type}</p>
-                    </div>
-                );
-            })}
-        </div>
-    );
+	const [contextState] = useContext(homePageContext);
+
+	if (!contextState.currentCity) {
+      return null
+  };
+
+  const data = getDifferenceBeetwenDates(new Date(contextState.currentCity.startDate));
+
+	return (
+		<div className={styles.timerWrapper}>
+			{Object.keys(data).map((item) => {
+				return (
+					<div key={item} className={styles.timeline}>
+						<p className={styles.date}>{data[item as keyof typeof data]}</p>
+						<p className={styles.nameDate}>{item}</p>
+					</div>
+				);
+			})}
+		</div>
+	);
 };
