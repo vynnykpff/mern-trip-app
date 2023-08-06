@@ -4,11 +4,15 @@ import {useAppSelector} from "@/hooks/useAppSelector.ts";
 
 type HomePageContextState = {
 	currentCity: Trip | undefined,
+	currentWeather: number,
+	currentWeatherImage: string,
 	setCurrentCity: Dispatch<SetStateAction<HomePageContextState["currentCity"]>>
 }
 
 const initialState: HomePageContextState = {
 	currentCity: undefined,
+	currentWeather: 0,
+	currentWeatherImage: "",
 	setCurrentCity: () => {
 	},
 }

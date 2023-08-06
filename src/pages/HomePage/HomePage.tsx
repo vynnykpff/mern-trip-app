@@ -1,4 +1,4 @@
-import {Search, Sidebar, Trips, WeatherForecast} from "@/components";
+import {SearchTrips, Sidebar, Trips, WeatherForecast} from "@/components";
 import styles from "./HomePage.module.css";
 import {withAuthorizedRoute} from "@/HOCs/withAuthorizedRoute.tsx";
 import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
@@ -24,7 +24,7 @@ const HomePage = () => {
 			<div className={styles.homeWrapper}>
 				<div className={styles.sectionWrapper}>
 					<h2 className={styles.title}>Weather <span className={styles.highlight}>Forecast</span></h2>
-					<Search/>
+					<SearchTrips/>
 					<Trips/>
 					<h3>Week</h3>
 					<WeatherForecast/>
