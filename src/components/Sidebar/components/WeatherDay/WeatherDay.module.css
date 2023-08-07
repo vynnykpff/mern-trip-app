@@ -20,7 +20,7 @@
 .weatherImage {
     position: absolute;
     left: -55px;
-    width: 65px
+    font-size: 55px;
 }
 
 .weatherTemp {

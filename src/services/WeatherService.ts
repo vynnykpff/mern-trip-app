@@ -7,13 +7,13 @@ export class WeatherService {
 	});
 	private static additionalQueryParams = `unitGroup=metric&include=days&key=${import.meta.env.VITE_WEATHER_API_KEY}&contentType=json`;
 
-	static async getCurrentWeatherOnTrip({cityName, startDate, endDate}: Omit<ResponseTrip, "id">) {
+	static async getWeatherOnTrip({cityName, startDate, endDate}: Omit<ResponseTrip, "id">) {
 		const response = await this.weatherApi.get(`/${cityName}/${startDate}/${endDate}?${this.additionalQueryParams}`);
 		return response.data.days;
 	}
 
-	static async getCurrentWeatherOnDay(city: string) {
+	static async getWeatherOnDay(city: string) {
 		const response = await this.weatherApi.get(`/${city}/today?${this.additionalQueryParams}`);
-		return response.data.days[0].temp;
+		return response.data.days[0];
 	}
 }

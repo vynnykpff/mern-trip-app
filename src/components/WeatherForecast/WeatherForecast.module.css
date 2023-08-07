@@ -20,7 +20,6 @@
 }
 
 .weatherImage {
-    width: 60px;
-    height: 60px;
+    font-size: 45px;
     margin: 15px 0;
 }

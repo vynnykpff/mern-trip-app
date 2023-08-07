@@ -1,6 +1,6 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import currentCitySliceReducer from "@/store/slices/tripsSlice/slice.ts";
-import currentWeatherSliceReducer from "./slices/currentWeatherSlice/slice.ts";
+import weatherSliceReducer from "./slices/weatherSlice/slice.ts";
 import uiSliceReducer from "./slices/uiSlice";
 import userSliceReducer from "./slices/userSlice/slice.ts";
 import tripsSliceReducer from "./slices/tripsSlice/slice.ts";
@@ -9,7 +9,7 @@ import searchSliceReducer from "./slices/searchSlice.ts";
 
 const rootReducer = combineReducers({
     currentCitySliceReducer,
-    currentWeatherSliceReducer,
+    weatherSliceReducer,
     uiSliceReducer,
     userSliceReducer,
     tripsSliceReducer,

@@ -1,6 +1,6 @@
-export const getDay = () => {
+export const getDay = (currentDate:Date | string) => {
 	const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	const date = new Date();
+	const date = new Date(currentDate);
 	const dayIndex = date.getDay();
 	return daysOfWeek[dayIndex];
 }
