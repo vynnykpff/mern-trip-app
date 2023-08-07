@@ -1,18 +1,18 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {WeatherService} from "@/services/WeatherService.ts";
 import {StoreAsyncThunkHandler} from "@/types/StoreAsyncThunkHandler.ts";
-import {CurrentWeatherState} from "@/store/slices/currentWeatherSlice/slice.ts";
 import {StoreAsyncThunk} from "@/types/StoreAsyncThunk.ts";
+import {WeatherState} from "@/store/slices/weatherSlice";
 
 // TODO
 // убрать везде getState
 
 const asyncThunk = createAsyncThunk(
-    "current_weather/fetchCurrentDailyWeather",
+    "weather/getDailyWeather",
     async function (_, {rejectWithValue, getState}) {
         try {
-            const tripData = getState().currentWeatherSliceReducer.city;
-            const response = await WeatherService.getCurrentWeatherOnDay(tripData);
+            const tripData = getState().weatherSliceReducer.city;
+            const response = await WeatherService.getWeatherOnDay(tripData);
 
             return response;
         } catch (error: any) {
@@ -21,11 +21,11 @@ const asyncThunk = createAsyncThunk(
     }
 );
 
-const storeHandler: StoreAsyncThunkHandler<CurrentWeatherState> = (state, action) => {
-    state.currentWeather = action.payload;
+const storeHandler: StoreAsyncThunkHandler<WeatherState> = (state, action) => {
+    state.weatherOnDay = action.payload;
 };
 
-export const fetchCurrentDailyWeather: StoreAsyncThunk<CurrentWeatherState> = {
+export const getDailyWeather: StoreAsyncThunk<WeatherState> = {
     asyncThunk,
     storeHandler
 };

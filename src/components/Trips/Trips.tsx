@@ -1,4 +1,4 @@
-import {LargeButton} from "@/components";
+import {LargeButton, Loader} from "@/components";
 import styles from "./Trips.module.css";
 import {useUiState} from "@/hooks/useUiState.ts";
 import {useAppSelector} from "@/hooks/useAppSelector";
@@ -7,24 +7,28 @@ import {MouseEvent, useContext} from "react";
 import {homePageContext} from "@/pages/HomePage/HomePageContext.tsx";
 import {Trip} from "@/types/Trip.ts";
 import {AiOutlineDelete} from "react-icons/ai";
-import {HiPencilAlt} from "react-icons/hi";
+import {HiOutlinePlus, HiPencilAlt} from "react-icons/hi";
 import {deleteT} from "@/pages/HomePage/HomePage.tsx";
+import {getWeatherOnTrip} from "@/store/slices/weatherSlice/thunks/getWeatherOnTrip.ts";
+import {setTripData} from "@/store/slices/weatherSlice";
+import {getDay} from "@/helpers/getDay.ts";
 
 export const Trips = () => {
 	const [_, setModalActive] = useUiState("createTripModal");
 	const [updateTripModal, setUpdateTripModal] = useUiState("updateTripModal");
 	const {trips, isPending} = useAppSelector(state => state.tripsSliceReducer);
-	const {setCurrentCity} = useContext(homePageContext);
+	const [state, setState] = useContext(homePageContext);
 	const dispatch = useAppDispatch();
 	const {searchValue} = useAppSelector(store => store.searchSliceReducer);
-
 
 	const onCreateTripClick = () => {
 		setModalActive(true);
 	};
 
 	const onTripClick = (trip: Trip) => {
-		setCurrentCity(trip)
+		setState({currentCity: trip})
+		dispatch(setTripData({cityName: trip.cityName, startDate: trip.startDate, endDate: trip.endDate}))
+		dispatch(getWeatherOnTrip.asyncThunk(null));
 	}
 
 	const onUpdateTripClick = (e: MouseEvent, trip: Trip) => {
@@ -40,10 +44,13 @@ export const Trips = () => {
 
 	const renderTrips = () => {
 		if (isPending) {
-			return "Content is on loading";
+			return <Loader/>;
 		} else {
 			const filteredTrips = trips.filter(trip => {
-				return trip.cityName.toLowerCase().includes(searchValue.toLowerCase());
+				if (new Date(trip.startDate).getTime() > new Date().getTime()) {
+					return trip.cityName.toLowerCase().includes(searchValue.toLowerCase());
+				}
+				dispatch(deleteT.asyncThunk(trip))
 			})
 
 			return filteredTrips.map((trip) => (
@@ -64,9 +71,7 @@ export const Trips = () => {
 		<section className={styles.tripsWrapper}>
 			{renderTrips()}
 			<LargeButton onClick={onCreateTripClick}>
-				<svg className={styles.buttonIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus">
-					<path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z"></path>
-				</svg>
+				<HiOutlinePlus className={styles.buttonIcon}/>
 				<p>Add Trip</p>
 			</LargeButton>
 		</section>

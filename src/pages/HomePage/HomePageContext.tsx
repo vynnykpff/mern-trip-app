@@ -1,34 +1,36 @@
 import {Trip} from "@/types/Trip.ts";
-import {createContext, Dispatch, FC, PropsWithChildren, SetStateAction, useEffect, useState} from "react";
+import {createContext, FC, PropsWithChildren, useEffect, useState} from "react";
 import {useAppSelector} from "@/hooks/useAppSelector.ts";
 
 type HomePageContextState = {
 	currentCity: Trip | undefined,
-	currentWeather: number,
-	currentWeatherImage: string,
-	setCurrentCity: Dispatch<SetStateAction<HomePageContextState["currentCity"]>>
 }
 
-const initialState: HomePageContextState = {
-	currentCity: undefined,
-	currentWeather: 0,
-	currentWeatherImage: "",
-	setCurrentCity: () => {
+type HomePageContext = [HomePageContextState, ((value: Partial<HomePageContextState> | ((prev: HomePageContextState) => HomePageContextState)) => void)]
+
+const initialState: HomePageContext = [
+	{
+		currentCity: undefined,
 	},
-}
+	() => null,
+]
 
-export const homePageContext = createContext<HomePageContextState>(initialState);
+export const homePageContext = createContext<HomePageContext>(initialState);
 
 const HomePageContextProvider:FC<PropsWithChildren> = ({children}) => {
 	const {trips} = useAppSelector(state => state.tripsSliceReducer);
-	const [currentCity, setCurrentCity] = useState<Trip | undefined>(trips[0]);
+	const [state, setContextState] = useState<HomePageContextState>({currentCity: trips[0]});
+
+	const setState = (value: Partial<HomePageContextState> | ((prev: HomePageContextState) => HomePageContextState)) => {
+		setContextState(typeof value === 'object' ? {...state, ...value} : {...state, ...value(state)})
+	}
 
 	useEffect(() => {
-		setCurrentCity(trips[0])
+		setState({currentCity: trips[0]})
 	}, [trips])
 
 	return (
-		<homePageContext.Provider value={{currentCity, setCurrentCity}}>
+		<homePageContext.Provider value={[state, setState]}>
 			{children}
 		</homePageContext.Provider>
 	);
