@@ -4,8 +4,8 @@ import {homePageContext} from "@/pages/HomePage/HomePageContext.tsx";
 import {WeatherService} from "@/services/WeatherService.ts";
 import {getDay} from "@/helpers/getDay.ts";
 import {TbDatabaseX} from "react-icons/tb";
-import {BsCloudRain} from "react-icons/bs";
-import {BiSun} from "react-icons/bi";
+import {getWeatherIcon} from "@/helpers/getWeatherIcon.tsx";
+import {Loader} from "@/components";
 
 export const WeatherDay = () => {
 	const [contextState] = useContext(homePageContext);
@@ -29,17 +29,20 @@ export const WeatherDay = () => {
 	}
 
 	return (
-		<div className={styles.weatherContainer}>
-			<p className={styles.day}>{getDay(new Date)}</p>
-			<div className={styles.weatherBlock}>
-				{/*<img className={styles.weatherImage} src={weather} alt="img"/>*/}
-				{currentWeatherOnDay?.icon === "clear-day" ? <BiSun className={styles.weatherImage}/> :
-					<BsCloudRain className={styles.weatherImage}/>}
-				<p className={styles.weatherTemp}>
-					{currentWeatherOnDay?.temp} <span className={styles.weatherDegree}>&#176;C</span>
-				</p>
-			</div>
-			<p className={styles.weatherCity}>{contextState.currentCity.cityName}</p>
-		</div>
-	);
+		<>
+			{!currentWeatherOnDay ? <Loader/> :
+				<div className={styles.weatherContainer}>
+					<p className={styles.day}>{getDay(new Date)}</p>
+					<div className={styles.weatherBlock}>
+						{/*<BsCloudRain className={styles.weatherImage}/>}*/}
+						{getWeatherIcon(currentWeatherOnDay.icon)}
+						<p className={styles.weatherTemp}>
+							{currentWeatherOnDay.temp} <span className={styles.weatherDegree}>&#176;C</span>
+						</p>
+					</div>
+					<p className={styles.weatherCity}>{contextState.currentCity.cityName}</p>
+				</div>
+			}
+		</>
+	)
 };
