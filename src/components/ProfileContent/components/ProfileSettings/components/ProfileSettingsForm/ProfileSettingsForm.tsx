@@ -13,9 +13,8 @@ export const ProfileSettingsForm = () => {
 	const {
 		handleSubmit,
 		register,
-		reset,
 		formState: {errors},
-	} = useForm({
+	} = useForm<PatchUser>({
 		mode: "onBlur",
 	});
 
@@ -32,6 +31,10 @@ export const ProfileSettingsForm = () => {
 		dispatch(patchUser.asyncThunk(newData));
 	}
 
+	if (!user) {
+		return null;
+	}
+
 	return (
 		<form className={styles.formWrapper} onSubmit={handleSubmit(onSubmit)}>
 			<label className={commonStyles.formLabel} htmlFor="username">Username
@@ -46,8 +49,8 @@ export const ProfileSettingsForm = () => {
 			<label className={commonStyles.formLabel} htmlFor="password">Password
 				<input {...register("password")} className={commonStyles.formField}
 				       id="password" type="password"/>
-				<p className={styles.formError}>{errors?.userPassword &&
-					<span>{(errors?.userPassword?.message as string) || "Error!"}</span>}
+				<p className={styles.formError}>{errors?.password &&
+					<span>{(errors?.password?.message as string) || "Error!"}</span>}
 				</p>
 			</label>
 
@@ -56,8 +59,8 @@ export const ProfileSettingsForm = () => {
 				       className={commonStyles.formField}
 				       id="avatar"
 				       type="text"/>
-				<p className={styles.formError}>{errors?.userImage &&
-					<span>{(errors?.userImage?.message as string) || "Error!"}</span>}
+				<p className={styles.formError}>{errors?.avatar &&
+					<span>{(errors?.avatar?.message as string) || "Error!"}</span>}
 				</p>
 			</label>
 			<button type="submit" className={commonStyles.agreeButton}>Save</button>

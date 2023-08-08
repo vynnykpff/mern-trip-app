@@ -6,10 +6,11 @@ import {getDay} from "@/helpers/getDay.ts";
 import {TbDatabaseX} from "react-icons/tb";
 import {getWeatherIcon} from "@/helpers/getWeatherIcon.tsx";
 import {Loader} from "@/components";
+import {WeatherOnDayType} from "@/types/WeatherOnDay.ts";
 
 export const WeatherDay = () => {
 	const [contextState] = useContext(homePageContext);
-	const [currentWeatherOnDay, setCurrentWeatherOnDay] = useState();
+	const [currentWeatherOnDay, setCurrentWeatherOnDay] = useState<WeatherOnDayType>();
 
 	const getCurrentWeatherOnDay = async () => {
 		if (!contextState.currentCity) {

@@ -3,15 +3,14 @@ import {WeatherService} from "@/services/WeatherService.ts";
 import {StoreAsyncThunkHandler} from "@/types/StoreAsyncThunkHandler.ts";
 import {StoreAsyncThunk} from "@/types/StoreAsyncThunk.ts";
 import {WeatherState} from "@/store/slices/weatherSlice";
-
-// TODO
-// убрать везде getState
+import {RootState} from "@/store/store.ts";
 
 const asyncThunk = createAsyncThunk(
     "weather/getDailyWeather",
     async function (_, {rejectWithValue, getState}) {
         try {
-            const tripData = getState().weatherSliceReducer.city;
+            const getTypedState = getState()! as RootState
+            const tripData = getTypedState.weatherSliceReducer.cityName;
             const response = await WeatherService.getWeatherOnDay(tripData);
 
             return response;

@@ -1,5 +1,6 @@
 import axios from "axios";
 import {ResponseTrip} from "@/types/Trip";
+import {WeatherOnDayType} from "@/types/WeatherOnDay.ts";
 
 export class WeatherService {
 	private static weatherApi = axios.create({
@@ -13,7 +14,7 @@ export class WeatherService {
 	}
 
 	static async getWeatherOnDay(city: string) {
-		const response = await this.weatherApi.get(`/${city}/today?${this.additionalQueryParams}`);
+		const response = await this.weatherApi.get<{days: WeatherOnDayType[]}>(`/${city}/today?${this.additionalQueryParams}`);
 		return response.data.days[0];
 	}
 }

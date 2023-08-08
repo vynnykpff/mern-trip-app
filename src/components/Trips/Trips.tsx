@@ -13,8 +13,8 @@ import {getWeatherOnTrip} from "@/store/slices/weatherSlice/thunks/getWeatherOnT
 import {setTripData} from "@/store/slices/weatherSlice";
 
 export const Trips = () => {
-	const [_, setModalActive] = useUiState("createTripModal");
-	const [updateTripModal, setUpdateTripModal] = useUiState("updateTripModal");
+	const setModalActive = useUiState("createTripModal")[1];
+	const setUpdateTripModal = useUiState("updateTripModal")[1];
 	const {trips, isPending} = useAppSelector(state => state.tripsSliceReducer);
 	const [contextState, setContextState] = useContext(homePageContext);
 	const dispatch = useAppDispatch();

@@ -30,7 +30,7 @@ export const CreateTripModal = () => {
 		register,
 		reset,
 		formState: {errors},
-	} = useForm({
+	} = useForm<CreateTrip>({
 		mode: "onBlur",
 	});
 
@@ -75,7 +75,7 @@ export const CreateTripModal = () => {
 					        className={styles.modalField} id="startDate"
 					        type="date"/>
 					<label className={styles.modalLabel} htmlFor="endDate">End date
-						<p className={styles.modalError}>{errors?.to &&
+						<p className={styles.modalError}>{errors?.endDate &&
 							<span>{(errors?.endDate?.message as string) || "Error!"}</span>}</p>
 					</label>
 					<input  {...register("endDate", {required: "Required field"})} disabled={!longTrip}
