@@ -71,6 +71,11 @@
 	bottom: -65px;
 }
 
+.serverError{
+	color: #f00;
+	font-size: 14px;
+}
+
 .buttonWrapper {
 	display: flex;
 	justify-content: space-between;
