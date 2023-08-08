@@ -1,6 +1,7 @@
 import {Modal} from "@/components/ui/Modal/Modal.tsx";
 import {useForm} from "react-hook-form";
 import styles from "./CreateTripModal.module.css";
+import commonStyles from "@/styles/common.module.css";
 import {useUiState} from "@/hooks/useUiState.ts";
 import {CreateTrip} from "@/types/CreateTrip.ts";
 import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
@@ -58,38 +59,38 @@ export const CreateTripModal = () => {
 		       onHide={onHide}
 		       title="Create trip">
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className={styles.modalFieldsWrapper}>
-					<label className={styles.modalLabel} htmlFor="cityName">City
-						<p className={styles.modalError}>{errors?.cityName &&
+				<div className={commonStyles.fieldsWrapper}>
+					<label className={commonStyles.formLabel} htmlFor="cityName">City
+						<p className={commonStyles.formError}>{errors?.cityName &&
 							<span>{(errors?.cityName?.message as string) || "Error!"}</span>}</p>
 					</label>
-					<input {...register("cityName", {required: "Required field"})} className={styles.modalField} id="cityName"
+					<input {...register("cityName", {required: "Required field"})} className={commonStyles.formField} id="cityName"
 					       type="text"
 					       placeholder="Please select a city"/>
-					<label className={styles.modalLabel} htmlFor="startDate">Start date
-						<p className={styles.modalError}>{errors?.startDate &&
+					<label className={commonStyles.formLabel} htmlFor="startDate">Start date
+						<p className={commonStyles.formError}>{errors?.startDate &&
 							<span>{(errors?.startDate?.message as string) || "Error!"}</span>}</p>
 					</label>
 					<input  {...register("startDate", {required: "Required field"})} onChange={e => onStartDateChange(e)}
 					        min={startDate} max={endDate}
-					        className={styles.modalField} id="startDate"
+					        className={commonStyles.formField} id="startDate"
 					        type="date"/>
-					<label className={styles.modalLabel} htmlFor="endDate">End date
-						<p className={styles.modalError}>{errors?.endDate &&
+					<label className={commonStyles.formLabel} htmlFor="endDate">End date
+						<p className={commonStyles.formError}>{errors?.endDate &&
 							<span>{(errors?.endDate?.message as string) || "Error!"}</span>}</p>
 					</label>
 					<input  {...register("endDate", {required: "Required field"})} disabled={!longTrip}
-					        className={styles.modalField} min={longTrip} max={endLongTrip} id="endDate"
+					        className={commonStyles.formField} min={longTrip} max={endLongTrip} id="endDate"
 					        type="date"/>
 				</div>
-
 				<div className={styles.footerModal}>
 					<div className={styles.buttonWrapper}>
 						<button onClick={closeModal} className={styles.cancelButton}>Cancel</button>
-						<button type="submit" className={styles.agreeButton}>Save</button>
+						<button type="submit" className={commonStyles.agreeButton}>Save</button>
 					</div>
 				</div>
 			</form>
+
 		</Modal>
 	);
 };

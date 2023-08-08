@@ -27,7 +27,6 @@ export const ProfileSettingsForm = () => {
 				newData[key] = data[key]
 			}
 		}
-
 		dispatch(patchUser.asyncThunk(newData));
 	}
 
@@ -38,19 +37,19 @@ export const ProfileSettingsForm = () => {
 	return (
 		<form className={styles.formWrapper} onSubmit={handleSubmit(onSubmit)}>
 			<label className={commonStyles.formLabel} htmlFor="username">Username
-				<input defaultValue={user.username} {...register("username")}
+				<input defaultValue={user.username} {...register("username", {maxLength: 20, minLength: 4})}
 				       className={commonStyles.formField} id="username"
 				       type="text"/>
 				<p className={styles.formError}>{errors?.username &&
-					<span>{(errors?.username?.message as string) || "Error!"}</span>}
+					<span>{(errors?.username?.message as string) || "Invalid data"}</span>}
 				</p>
 			</label>
 
 			<label className={commonStyles.formLabel} htmlFor="password">Password
-				<input {...register("password")} className={commonStyles.formField}
+				<input {...register("password", {minLength: 6})} className={commonStyles.formField}
 				       id="password" type="password"/>
 				<p className={styles.formError}>{errors?.password &&
-					<span>{(errors?.password?.message as string) || "Error!"}</span>}
+					<span>{(errors?.password?.message as string) || "Invalid data"}</span>}
 				</p>
 			</label>
 
@@ -60,7 +59,7 @@ export const ProfileSettingsForm = () => {
 				       id="avatar"
 				       type="text"/>
 				<p className={styles.formError}>{errors?.avatar &&
-					<span>{(errors?.avatar?.message as string) || "Error!"}</span>}
+					<span>{(errors?.avatar?.message as string) || "Invalid data"}</span>}
 				</p>
 			</label>
 			<button type="submit" className={commonStyles.agreeButton}>Save</button>

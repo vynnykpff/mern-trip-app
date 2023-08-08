@@ -3,10 +3,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     outline: none;
     border: none;
     font-weight: 500;
     cursor: pointer;
+    background-color: #f2f4f8;
+    border-radius: 8px;
 }

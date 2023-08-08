@@ -1,34 +1,66 @@
 .tripsWrapper {
-    display: flex;
-    column-gap: 40px;
-    flex-wrap: wrap;
-    margin: 40px 0 100px 0;
+	display: flex;
+	column-gap: 40px;
+	row-gap: 120px;
+	flex-wrap: wrap;
+	margin: 40px 0 120px 0;
+	overflow-y: auto;
+	min-height: 350px;
+	max-height: 660px;
+	max-width: 1100px;
 }
 
 .tripCard {
-    width: 200px;
-    height: 200px;
+	width: 220px;
+	height: 220px;
+}
+
+.selectTripCard {
+	border-left: 1px solid #8bc7ff;
+	border-right: 1px solid #8bc7ff;
+	border-bottom: 1px solid #8bc7ff;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 }
 
 .tripDescription {
-    padding: 15px;
+	padding: 15px;
+	margin-top: -4px;
+	position: relative;
 }
 
 .tripTitle {
-    font-weight: 600;
-    margin-bottom: 10px;
+	font-weight: 600;
+	font-size: 18px;
+	margin-bottom: 18px;
 }
 
 .tripDate {
-    color: #b7b6b6;
-    font-size: 14px;
+	color: #b7b6b6;
+	font-size: 15px;
+}
+
+.customizeButtonsBlock {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	display: flex;
+	column-gap: 8px
+}
+
+.customizeButtonsBlock svg {
+	cursor: pointer;
+	font-size: 18px;
 }
 
 .cityImage {
-    width: 100%;
-    height: 100%
+	width: 100%;
+	height: 100%;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 }
 
 .buttonIcon {
-    font-size: 30px;
+	font-size: 24px;
+	margin-bottom: 10px
 }

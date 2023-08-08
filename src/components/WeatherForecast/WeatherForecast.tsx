@@ -9,7 +9,7 @@ export const WeatherForecast = () => {
 	const {weatherOnTrip} = useAppSelector(state => state.weatherSliceReducer);
 
 	if (!weatherOnTrip.length) {
-		return <TbDatabaseX style={{fontSize: 60}}/>;
+		return <TbDatabaseX className={styles.noDataIcon}/>;
 	}
 
 	return (

@@ -1,6 +1,6 @@
 .formWrapper {
 	width: 350px;
-	padding: 30px;
+	padding: 40px;
 }
 
 .formError {
@@ -8,5 +8,5 @@
 	font-size: 14px;
 	position: absolute;
 	bottom: 30px;
-	width: 100px;
+	width: 350px
 }

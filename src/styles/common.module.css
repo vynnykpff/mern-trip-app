@@ -20,24 +20,14 @@
 
 .formTitle {
 	position: relative;
-	font-size: 18px;
+	font-size: 30px;
 	font-weight: 500;
 	margin-bottom: 20px;
 }
 
-.formTitle:before {
-	content: "";
-	position: absolute;
-	bottom: -10px;
-	height: 1px;
-	border-radius: 5px;
-	width: 100%;
-	background-color: #b7b6b6;
-}
-
 .fieldsWrapper {
 	display: flex;
-	padding: 20px 20px 0;
+	padding: 40px 40px 0;
 	flex-direction: column;
 	justify-content: center;
 }
@@ -51,16 +41,17 @@
 .formField {
 	margin-bottom: 30px;
 	font-size: 0.9rem;
-	background-color: transparent;
 	width: 100%;
-	height: 35px;
-	padding-inline: 0.5em;
+	height: 50px;
+	padding-inline: 0.8em;
 	padding-block: 0.7em;
-	border: 1px solid #b7b6b6;
-	border-radius: 5px;
+	background: #f2f4f8;
+	outline: none;
+	border: none;
+	border-radius: 10px;
 }
 
-.modalField::placeholder {
+.formField::placeholder {
 	color: #b7b6b6;
 }
 
@@ -68,10 +59,10 @@
 	color: #f00;
 	font-size: 14px;
 	position: absolute;
-	bottom: -65px;
+	bottom: -75px;
 }
 
-.serverError{
+.serverError {
 	color: #f00;
 	font-size: 14px;
 }
@@ -81,30 +72,19 @@
 	justify-content: space-between;
 	align-items: center;
 	position: relative;
-	margin-top: 20px
-}
-
-.buttonWrapper:before {
-	content: "";
-	position: absolute;
-	top: -10px;
-	height: 1px;
-	border-radius: 5px;
-	width: 100%;
-	background-color: #b7b6b6;
+	margin-top: 40px
 }
 
 .agreeButton {
 	outline: none;
-	border: none;
-	background-color: #3391fc;
+	border: 2px solid #251c73;
+	background-color: #251c73;
 	color: #fff;
 	font-weight: 500;
-	padding: 8px 15px;
-	border-radius: 3px;
+	padding: 10px 20px;
+	border-radius: 8px;
 	cursor: pointer;
 }
-
 
 .closeIcon {
 	width: 25px;
