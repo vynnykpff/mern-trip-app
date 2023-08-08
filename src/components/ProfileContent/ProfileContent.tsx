@@ -1,7 +1,9 @@
+import {ProfileSidebar} from "@/components";
+
 export const ProfileContent = () => {
-    return (
-        <div>
-            Content
-        </div>
-    );
+	return (
+		<div>
+			<ProfileSidebar/>
+		</div>
+	);
 };

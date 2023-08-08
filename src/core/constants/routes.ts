@@ -2,11 +2,10 @@ export const ROUTES = {
     home: "/",
     profile: "/profile",
     profileHome: "home",
-    profileSettings: "settings",
-    profileArchive: "archive",
+    profileSettings: "/profile/settings",
     login: "/login",
     register: "/register",
     all: "*",
 };
 
-export const {home, profile, profileHome, profileSettings, profileArchive, login, register, all} = ROUTES;
+export const {home, profile, profileHome, profileSettings, login, register, all} = ROUTES;

@@ -7,11 +7,11 @@ import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
 import {createTrip} from "@/store/slices/tripsSlice/thunks/createTrip.ts";
 import {ChangeEvent, useState} from "react";
 
-const toDateString = (d:Date) => {
+const toDateString = (d: Date) => {
 	return d.toLocaleDateString('fr-ca')
 }
 
-const addDaysToDate = (date:Date, days:number) => {
+const addDaysToDate = (date: Date, days: number) => {
 	date.setDate(date.getDate() + days);
 	return date;
 }
@@ -86,7 +86,7 @@ export const CreateTripModal = () => {
 				<div className={styles.footerModal}>
 					<div className={styles.buttonWrapper}>
 						<button onClick={closeModal} className={styles.cancelButton}>Cancel</button>
-						<input type="submit" className={styles.agreeButton}/>Save
+						<button type="submit" className={styles.agreeButton}>Save</button>
 					</div>
 				</div>
 			</form>

@@ -1,18 +1,25 @@
-import {LuArchive, LuHome, LuLogOut, LuSettings} from "react-icons/lu";
+import {LuHome, LuLogOut, LuSettings} from "react-icons/lu";
 import styles from "./ProfileSidebar.module.css";
 import {NavLink} from "react-router-dom";
-import {profileArchive, profileHome, profileSettings} from "@/core/constants/routes.ts";
+import {home, profileSettings} from "@/core/constants/routes.ts";
 import {useAppSelector} from "@/hooks/useAppSelector.ts";
 import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
 import {logout} from "@/store/slices/userSlice/thunks/auth/logout.ts";
+import {useEffect} from "react";
+import {getAllTrips} from "@/store/slices/tripsSlice/thunks/getAllTrips.ts";
 
 export const ProfileSidebar = () => {
     const dispatch = useAppDispatch();
     const {user} = useAppSelector(state => state.userSliceReducer);
+    const {trips} = useAppSelector(state => state.tripsSliceReducer);
 
     const onLogoutClick = () => {
         dispatch(logout.asyncThunk(null));
     };
+
+    useEffect(() => {
+        dispatch(getAllTrips.asyncThunk(null))
+    }, [])
 
     return (
         <aside className={styles.profileSidebarWrapper}>
@@ -20,12 +27,11 @@ export const ProfileSidebar = () => {
                 <div className={styles.profileHeader}>
                     <h4 className={styles.profileUserName}>{user!.username}</h4>
                     <img className={styles.profileUserImage} src={user!.avatar} alt=""/>
-                    <p className={styles.profileTripCount}>Count trips: 5</p>
+                    <p className={styles.profileTripCount}>Count trips: {trips.length}</p>
                 </div>
 
                 <ul className={styles.profileList}>
-                    <NavLink to={profileHome} className={styles.profileListItem}><LuHome/>Home</NavLink>
-                    <NavLink to={profileArchive} className={styles.profileListItem}><LuArchive/>Archive</NavLink>
+                    <NavLink to={home} className={styles.profileListItem}><LuHome/>Home</NavLink>
                     <NavLink to={profileSettings} className={styles.profileListItem}><LuSettings/>Settings</NavLink>
                 </ul>
 

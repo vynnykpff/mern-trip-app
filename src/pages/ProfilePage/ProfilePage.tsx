@@ -1,8 +1,8 @@
-import {ProfileSidebar} from "@/components/ProfileSidebar/ProfileSidebar.tsx";
 import styles from "./ProfilePage.module.css";
 import {Outlet} from "react-router-dom";
 import {withAuthorizedRoute} from "@/HOCs/withAuthorizedRoute.tsx";
 import {useAppSelector} from "@/hooks/useAppSelector.ts";
+import {ProfileContent} from "@/components";
 
 const ProfilePage = () => {
     const {user} = useAppSelector(state => state.userSliceReducer);
@@ -13,7 +13,7 @@ const ProfilePage = () => {
 
     return (
         <div className={styles.profileContainer}>
-            <ProfileSidebar/>
+            <ProfileContent/>
             <Outlet/>
         </div>
     );

@@ -11,22 +11,20 @@ import {HiOutlinePlus, HiPencilAlt} from "react-icons/hi";
 import {deleteT} from "@/pages/HomePage/HomePage.tsx";
 import {getWeatherOnTrip} from "@/store/slices/weatherSlice/thunks/getWeatherOnTrip.ts";
 import {setTripData} from "@/store/slices/weatherSlice";
-import {getDay} from "@/helpers/getDay.ts";
 
 export const Trips = () => {
 	const [_, setModalActive] = useUiState("createTripModal");
 	const [updateTripModal, setUpdateTripModal] = useUiState("updateTripModal");
 	const {trips, isPending} = useAppSelector(state => state.tripsSliceReducer);
-	const [state, setState] = useContext(homePageContext);
+	const [contextState, setContextState] = useContext(homePageContext);
 	const dispatch = useAppDispatch();
-	const {searchValue} = useAppSelector(store => store.searchSliceReducer);
 
 	const onCreateTripClick = () => {
 		setModalActive(true);
 	};
 
 	const onTripClick = (trip: Trip) => {
-		setState({currentCity: trip})
+		setContextState({currentCity: trip})
 		dispatch(setTripData({cityName: trip.cityName, startDate: trip.startDate, endDate: trip.endDate}))
 		dispatch(getWeatherOnTrip.asyncThunk(null));
 	}
@@ -48,10 +46,10 @@ export const Trips = () => {
 		} else {
 			const filteredTrips = trips.filter(trip => {
 				if (new Date(trip.startDate).getTime() > new Date().getTime()) {
-					return trip.cityName.toLowerCase().includes(searchValue.toLowerCase());
+					return trip.cityName.toLowerCase().includes(contextState.filterTripsValue.toLowerCase());
 				}
 				dispatch(deleteT.asyncThunk(trip))
-			})
+			}).sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime())
 
 			return filteredTrips.map((trip) => (
 				<div onClick={() => onTripClick(trip)} key={trip.id} className={styles.tripCard}>

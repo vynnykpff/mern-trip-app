@@ -1,13 +1,17 @@
 import styles from "./SearchTrips.module.css";
 import {LuDelete, LuSearch} from "react-icons/lu";
-import {useAppDispatch} from "@/hooks/useAppDispatch.ts";
-import {setSearchValue} from "@/store/slices/searchSlice.ts";
+import {ChangeEvent, useContext} from "react";
+import {homePageContext} from "@/pages/HomePage/HomePageContext.tsx";
 
 export const SearchTrips = () => {
-	const dispatch = useAppDispatch();
+	const [contextState, setContextState] = useContext(homePageContext);
 
 	const onResetSearch = () => {
-		dispatch(setSearchValue(""));
+		setContextState({filterTripsValue: ""});
+	}
+
+	const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setContextState({filterTripsValue: e.target.value});
 	}
 
 	return (
@@ -15,7 +19,7 @@ export const SearchTrips = () => {
 			<button>
 				<LuSearch/>
 			</button>
-			<input className={styles.input} onChange={e => dispatch(setSearchValue(e.target.value))}
+			<input className={styles.input} value={contextState.filterTripsValue} onChange={onSearchChange}
 			       placeholder="Search your trip" required={true} type="text"/>
 			<button className={styles.reset} type="reset">
 				<LuDelete onClick={onResetSearch}/>
