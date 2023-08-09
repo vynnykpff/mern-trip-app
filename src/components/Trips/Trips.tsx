@@ -20,7 +20,6 @@ export const Trips = () => {
 	const {trips, isPending} = useAppSelector(state => state.tripsSliceReducer);
 	const [contextState, setContextState] = useContext(homePageContext);
 	const [selectedTripId, setSelectedTripId] = useState("");
-
 	const dispatch = useAppDispatch();
 
 	const onCreateTripClick = () => {
@@ -79,7 +78,7 @@ export const Trips = () => {
 			{renderTrips()}
 			<LargeButton onClick={onCreateTripClick}>
 				<HiOutlinePlus className={styles.buttonIcon}/>
-				<p>Add Trip</p>
+				<p className={styles.buttonTitle}>Add Trip</p>
 			</LargeButton>
 		</section>
 	);

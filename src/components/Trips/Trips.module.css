@@ -3,7 +3,7 @@
 	column-gap: 40px;
 	row-gap: 120px;
 	flex-wrap: wrap;
-	margin: 40px 0 120px 0;
+	margin: 40px 0 60px 0;
 	overflow-y: auto;
 	min-height: 350px;
 	max-height: 660px;
@@ -16,9 +16,9 @@
 }
 
 .selectTripCard {
-	border-left: 1px solid #8bc7ff;
-	border-right: 1px solid #8bc7ff;
-	border-bottom: 1px solid #8bc7ff;
+	border-left: 1px solid var(--accent-color);
+	border-right: 1px solid var(--accent-color);
+	border-bottom: 1px solid var(--accent-color);
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
 }
@@ -33,10 +33,11 @@
 	font-weight: 600;
 	font-size: 18px;
 	margin-bottom: 18px;
+	color: var(--primary-color)
 }
 
 .tripDate {
-	color: #b7b6b6;
+	color: var(--secondary-color);
 	font-size: 15px;
 }
 
@@ -48,9 +49,10 @@
 	column-gap: 8px
 }
 
-.customizeButtonsBlock svg {
+.updateIcon {
 	cursor: pointer;
 	font-size: 18px;
+	color: var(--primary-color);
 }
 
 .cityImage {
@@ -61,6 +63,21 @@
 }
 
 .buttonIcon {
-	font-size: 24px;
-	margin-bottom: 10px
+	font-size: 30px;
+	margin-bottom: 10px;
+	color: var(--secondary-color);
+}
+
+.buttonTitle {
+	color: var(--secondary-color);
+}
+
+.tripsWrapper::-webkit-scrollbar {
+	width: 10px;
+}
+
+.tripsWrapper::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: var(--scrollbar-color);
 }

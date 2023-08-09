@@ -35,8 +35,10 @@ export const WeatherDay = () => {
 				<div className={styles.weatherContainer}>
 					<p className={styles.day}>{getDay(new Date)}</p>
 					<div className={styles.weatherBlock}>
-						{/*<BsCloudRain className={styles.weatherImage}/>}*/}
+						<span className={styles.weatherIconWrapper}>
 						{getWeatherIcon(currentWeatherOnDay.icon)}
+						</span>
+
 						<p className={styles.weatherTemp}>
 							{currentWeatherOnDay.temp} <span className={styles.weatherDegree}>&#176;C</span>
 						</p>

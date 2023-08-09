@@ -2,7 +2,7 @@
 	width: 550px;
 	height: 530px;
 	border-radius: 10px;
-	background-color: #fff;
+	background-color: var(--background-color);
 }
 
 .modalOverlay {
@@ -49,6 +49,7 @@
 	font-weight: 700;
 	font-size: 25px;
 	padding: 40px 40px 0;
+	color: var(--primary-color);
 }
 
 .closeWrapper {
@@ -57,5 +58,5 @@
 
 .closeIcon {
 	width: 25px;
-	color: #b7b6b6;
+	color: var(--secondary-color);
 }

@@ -27,6 +27,9 @@
 - [Axios](https://axios-http.com/)
 - [normalize.css](https://necolas.github.io/normalize.css/)
 
+### Backend part:
+- [Stack](https://github.com/vynnykpff/mern-trip-app-server)
+
 ## **Using**
 
 **If you want to use this project for your own purposes, you should:**

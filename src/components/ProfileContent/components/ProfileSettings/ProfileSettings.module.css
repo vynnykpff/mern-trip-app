@@ -2,13 +2,14 @@
 	width: 100%;
 }
 
-.contentWrapper {
-}
-
-.header {
+.customizeList {
 	padding: 40px;
+	margin-top: -40px;
 }
 
-.title {
-	font-size: 30px;
+.themeItem {
+	font-size: 25px;
+	display: inline-block;
+	cursor: pointer;
+	color: var(--primary-color);
 }
