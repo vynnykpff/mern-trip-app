@@ -9,3 +9,4 @@ export {ProfileSettings} from "./ProfileContent/components/ProfileSettings/Profi
 export {ProfileSettingsForm} from "./ProfileContent/components/ProfileSettings/components/ProfileSettingsForm/ProfileSettingsForm.tsx";
 export {ProfileSidebar} from "./ProfileContent/components/ProfileSidebar/ProfileSidebar.tsx";
 export {ProfileContent} from "./ProfileContent/ProfileContent.tsx";
+export {ProfileHeader} from "./ProfileContent/components/ProfileSettings/components/ui/ProfileHeader/ProfileHeader.tsx";

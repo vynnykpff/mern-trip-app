@@ -64,7 +64,8 @@ export const CreateTripModal = () => {
 						<p className={commonStyles.formError}>{errors?.cityName &&
 							<span>{(errors?.cityName?.message as string) || "Error!"}</span>}</p>
 					</label>
-					<input {...register("cityName", {required: "Required field"})} className={commonStyles.formField} id="cityName"
+					<input {...register("cityName", {required: "Required field"})} className={commonStyles.formField}
+					       id="cityName"
 					       type="text"
 					       placeholder="Please select a city"/>
 					<label className={commonStyles.formLabel} htmlFor="startDate">Start date

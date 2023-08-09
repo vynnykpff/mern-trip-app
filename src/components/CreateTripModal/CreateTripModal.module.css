@@ -17,10 +17,11 @@
 
 .cancelButton {
 	border: 2px solid #eaeaea;
-	background-color: #fff;
+	background-color: var(--background-color);
 	font-weight: 500;
 	padding: 10px 20px;
 	border-radius: 8px;
 	margin-right: 10px;
 	cursor: pointer;
+	color: var(--primary-color);
 }

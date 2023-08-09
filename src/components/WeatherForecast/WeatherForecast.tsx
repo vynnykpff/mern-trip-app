@@ -18,7 +18,7 @@ export const WeatherForecast = () => {
 				return (
 					<div key={uuidv4()} className={styles.weatherCard}>
 						<p className={styles.weatherDay}>{getDay(day.datetime)}</p>
-						<p className={styles.weatherTemp}>{day.datetime}</p>
+						<p className={styles.weatherDate}>{day.datetime}</p>
 						{getWeatherIcon(day.icon)}
 						<p className={styles.weatherTemp}>{day.tempmin} &#176; / {day.tempmax} &#176;</p>
 					</div>

@@ -10,17 +10,31 @@
 	overflow-y: auto;
 }
 
+.weatherWrapper::-webkit-scrollbar {
+	width: 10px;
+}
+
+.weatherWrapper::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: var(--scrollbar-color);
+}
+
 .weatherCard {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 120px;
 	height: 150px;
+	color: var(--primary-color);
 }
 
 .weatherDay {
-	color: #b7b6b6;
 	margin-bottom: 10px;
+}
+
+.weatherDate {
+	color: var(--secondary-color);
 }
 
 .weatherTemp {
@@ -34,6 +48,6 @@
 
 .noDataIcon {
 	font-size: 45px;
-	color: #ccc;
+	color: var(--secondary-color);
 	margin-top: 20px;
 }

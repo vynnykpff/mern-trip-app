@@ -24,7 +24,7 @@ const HomePage = () => {
 					<h2 className={styles.title}>Weather <span className={styles.highlight}>Forecast</span></h2>
 					<SearchTrips/>
 					<Trips/>
-					<h3>Week</h3>
+					<h3 className={styles.subTittle}>Week</h3>
 					<WeatherForecast/>
 				</div>
 				<Sidebar/>
